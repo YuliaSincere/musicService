@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/musicServiceServer/bin/Debug/net5.0/musicService.dll",
+            "program": "${workspaceFolder}/bin/Debug/net5.0/musicService.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/musicServiceServer",
+            "cwd": "${workspaceFolder}/",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",

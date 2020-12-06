@@ -18,7 +18,7 @@ namespace musicService
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-       public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MusicServiceDbContext>(options =>
             {
@@ -28,7 +28,8 @@ namespace musicService
                     builder.MigrationsHistoryTable("__EFMigrationHistory"));
             });
 
-            services.AddCors(options => {
+            services.AddCors(options =>
+            {
                 options.AddDefaultPolicy(policy =>
                 {
                     policy
@@ -40,6 +41,11 @@ namespace musicService
 
             services.AddControllersWithViews();
             services.AddSignalR();
+
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "musicServiceApp";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,7 +74,7 @@ namespace musicService
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
-                spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = "musicServiceApp";
             });
 
             app.UseEndpoints(endpoints =>

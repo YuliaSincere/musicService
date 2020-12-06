@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/musicServiceServer/musicService.csproj",
+                "${workspaceFolder}/musicService.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/musicServiceServer/musicService.csproj",
+                "${workspaceFolder}/musicService.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,11 +32,22 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/musicServiceServer/musicService.csproj",
+                "${workspaceFolder}/musicService.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "ng serve",
+            "command": "ng",
+            "args": [
+                "serve"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/musicServiceApp"
+            },
+            "problemMatcher": []
         }
     ]
 }
