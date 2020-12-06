@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using musicServiceServer.Database;
+using Microsoft.AspNetCore.Http.Connections;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using musicServiceServer.Database;
+using MusicServiceServer.Database;
 
 namespace musicService
 {
@@ -24,15 +27,16 @@ namespace musicService
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+       public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<musicServiceDbContext>(options =>
+            services.AddDbContext<MusicServiceDbContext>(options =>
             {
                 options.UseNpgsql(
                     Configuration.GetConnectionString("DefaultConnection"),
-                    builder => 
+                    builder =>
                     builder.MigrationsHistoryTable("__EFMigrationHistory"));
             });
+
             services.AddCors(options => {
                 options.AddDefaultPolicy(policy =>
                 {
@@ -45,8 +49,6 @@ namespace musicService
 
             services.AddControllersWithViews();
             services.AddSignalR();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +57,6 @@ namespace musicService
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseCors();
             }
             else
             {
@@ -71,24 +72,17 @@ namespace musicService
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
                 spa.Options.SourcePath = "ClientApp";
+            });
 
-                if (isDevelopmentEnv)
-                {
-                    // Использование внешнего сервера для клиента.
-                    // Необходимо запустить ng serve в каталоге клиента.
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-                }
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
         }
     }

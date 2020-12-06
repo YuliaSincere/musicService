@@ -1,15 +1,15 @@
-using musicServiceServer.Database.Entities;
 using Microsoft.EntityFrameworkCore;
+using musicServiceServer.Database.Entities;
 
-namespace musicServiceServer.Database
+namespace MusicServiceServer.Database
 {
-    public class musicServiceDbContext : DbContext
+    public class MusicServiceDbContext : DbContext
     {
         public DbSet<Track> Tracks { get; set; }
         public DbSet<Lyrics> Lyrics { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<User> Users { get; set; }
-        public musicServiceDbContext(DbContextOptions<musicServiceDbContext> options) 
+        public MusicServiceDbContext(DbContextOptions<MusicServiceDbContext> options) 
             : base(options)
         {
             
