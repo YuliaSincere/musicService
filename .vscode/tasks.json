@@ -48,6 +48,19 @@
                 "cwd": "${workspaceFolder}/musicServiceApp"
             },
             "problemMatcher": []
-        }
+        },
+        {
+            "label": "start server",
+            "command": "dotnet",
+            "args": [
+                "run",
+                "musicService"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+
     ]
 }
