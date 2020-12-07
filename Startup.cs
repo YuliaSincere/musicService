@@ -75,12 +75,28 @@ namespace musicService
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
                 spa.Options.SourcePath = "musicServiceApp";
+
+                if (env.IsDevelopment())
+                {
+                    //Использование внешнего сервера для клиента.
+                    //Необходимо запустить ng serve в каталоге клиента
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                }
             });
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            // Запуск миграции БД
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                using (var context = scope.ServiceProvider.GetService<MusicServiceDbContext>())
+                {
+                    context.Database.Migrate(); //создание базы
+                }
+            }
         }
     }
 }
