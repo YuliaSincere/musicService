@@ -44,5 +44,6 @@ namespace musicServiceServer.Database.Entities
         /// Обложка песни.
         /// </summary>
         public string Picture { get; set; }
+
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MusicServiceServer.Database;
 using Microsoft.EntityFrameworkCore;
+using musicService.Database.Entities;
 
 namespace musicService
 {
@@ -95,6 +96,7 @@ namespace musicService
                 using (var context = scope.ServiceProvider.GetService<MusicServiceDbContext>())
                 {
                     context.Database.Migrate(); //создание базы
+                    DatabaseSeeder.Seed(context);
                 }
             }
         }

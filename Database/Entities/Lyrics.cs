@@ -30,5 +30,7 @@ namespace musicServiceServer.Database.Entities
         public string Text { get; set; }
 
         public virtual Track Track { get; set; }
+        public virtual Language Language { get; set; }
     }
+    
 }

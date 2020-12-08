@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace musicServiceServer.Database.Entities
@@ -18,5 +19,7 @@ namespace musicServiceServer.Database.Entities
         /// Название языка.
         /// </summary>
         public string Name { get; set; }
+
+
     }
 }
