@@ -9,6 +9,6 @@ public class LyricsDto
     public int TrackId { get; set; }
     public int LanguageId { get; set; }
     public string Text { get; set; }
-    public int Track { get; set; }
-    public int Language { get; set; }
+    //public int Track { get; set; }
+    //public int Language { get; set; }
 }
