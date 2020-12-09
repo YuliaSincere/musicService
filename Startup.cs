@@ -70,6 +70,17 @@ namespace musicService
 
             app.UseAuthorization();
 
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                /*
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Bookstore}/{action=Index}");
+                */
+            });
+
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
@@ -83,16 +94,6 @@ namespace musicService
                     //Необходимо запустить ng serve в каталоге клиента
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
-            });
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-                /*
-                endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Bookstore}/{action=Index}");
-                */
             });
 
             // Запуск миграции БД

@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 
-namespace bookstoreApp.Controllers
+namespace musicServiceApp.Controllers
 {
     [Route("api/b")]
     [ApiController]
-    public class MusicServiceController : Controller
+    public class MusicServiceController : ControllerBase
     {
         [HttpGet]
         [Route("index")]
