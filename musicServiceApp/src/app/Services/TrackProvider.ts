@@ -13,7 +13,7 @@ export class TrackProvider {
     constructor(
         private http: HttpClient) { }
 
-    private tracksUrl = 'api/music'; //url to web api
+    private tracksUrl = 'api/tracks'; //url to web api
 
     async getTracks(): Promise<Track[]> {
         const tracks = await this.http.get<Track[]>(this.tracksUrl).toPromise();
