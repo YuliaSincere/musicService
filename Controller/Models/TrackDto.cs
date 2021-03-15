@@ -10,6 +10,6 @@ public class TrackDto
      public string Author { get; set; }
      public string Year { get; set; }
      public string Genre { get; set; }
-     public TimeSpan Duration { get; set; }
+     public string Duration { get; set; }
      public string Picture { get; set; }
 }

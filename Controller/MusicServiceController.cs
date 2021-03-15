@@ -48,7 +48,7 @@ namespace musicServiceApp.Controllers
             result.Author = t.Author;
             result.Year = t.Year;
             result.Genre = t.Genre;
-            result.Duration = t.Duration;
+            result.Duration = t.Duration.ToString(@"mm\:ss");
             result.Picture = t.Picture;
         return result;
         }
