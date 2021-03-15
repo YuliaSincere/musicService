@@ -8,7 +8,7 @@ using System.Text.Encodings.Web;
 
 namespace musicServiceApp.Controllers
 {
-    [Route("api/music")]
+    [Route("api/content")]
     [ApiController]
     public class MusicServiceController : ControllerBase
     {
@@ -19,20 +19,27 @@ namespace musicServiceApp.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<TrackDto> GetTrackDto()
+        [Route("api/tracks")]
+        public IEnumerable<TrackDto> GetTracks()
         {
             var trackFromDb = _context.Tracks
                 .OrderBy(t => t.Title)
                 .Select(t => ConvertToDto(t)).ToList();
             return trackFromDb;
         }
-        public IEnumerable<LanguageDto> GetLanguageDto()
+
+        [HttpGet]
+        [Route("api/languages")]
+        public IEnumerable<LanguageDto> GetLanguages()
         {
             var languageFromDb = _context.Languages
                 .Select(lan => ConvertToDto(lan)).ToList();
             return languageFromDb;
         }
-        public IEnumerable<LyricsDto> GetLyricsDto()
+
+        [HttpGet]
+        [Route("api/lyrics")]
+        public IEnumerable<LyricsDto> GetLyrics()
         {
             var lyricsFromDb = _context.Lyrics
                 .Select(lyr => ConvertToDto(lyr)).ToList();
