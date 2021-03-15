@@ -41,6 +41,7 @@
         {
             "label": "ng serve",
             "command": "ng",
+            "type": "shell",
             "args": [
                 "serve"
             ],
