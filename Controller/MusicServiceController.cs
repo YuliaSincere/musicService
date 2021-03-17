@@ -39,12 +39,12 @@ namespace musicServiceApp.Controllers
 
         [HttpGet]
         [Route("lyrics")]
-        public IEnumerable<LyricsDto> GetLyrics(Track t, Language la, Lyrics ly)
+        public IEnumerable<LyricsDto> GetLyrics(int trackId, int languageId )
         {
             var lyricsFromDb = _context.Lyrics
                 .Select(lyr => ConvertToDto(lyr))
-                .Where(lyr => t.Id == ly.TrackId &&
-                        la.Id == ly.LanguageId)
+                .Where(lyr => trackId == lyr.TrackId &&
+                        languageId == lyr.LanguageId)
                 .ToList();
             return lyricsFromDb;
         }
