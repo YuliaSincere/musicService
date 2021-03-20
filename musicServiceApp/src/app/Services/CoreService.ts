@@ -1,6 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { ChangedArgs } from './ChangedArgs';
 import { LanguageProvider } from './LanguageProvider';
+import { LyricsProvider } from './LyricsProvider';
 ;
 
 
@@ -9,20 +11,31 @@ import { LanguageProvider } from './LanguageProvider';
 })
 export class CoreService {
 
-    private readonly onTrackSelected: Subject<any>;
+    private readonly onChanged: Subject<ChangedArgs>;
 
     private trackId: number;
     private languageId: number;
+    private lyricsId: number;
 
-    constructor(private languageProvider: LanguageProvider) {
-        this.onTrackSelected = new Subject<any>();
-        this.SetDefaultLanguage()
+    constructor(private languageProvider: LanguageProvider, private lyricsProvider: LyricsProvider) {
+        this.onChanged = new Subject<any>();
+        this.SetDefaultLanguage();
     }
 
     public setTrackId(trackId: number) {
         this.trackId = trackId;
-        console.log(this.trackId);
-        this.onTrackSelected.next();
+        this.raiseOnChanged();
+    }
+
+    public setLanguageId(languageId: number) {
+        this.languageId = languageId;
+        this.raiseOnChanged();
+    }
+
+
+    private raiseOnChanged(){
+        const args = { trackId : this.trackId, languageId : this.languageId };
+        this.onChanged.next(args);
     }
 
     async SetDefaultLanguage() {
@@ -36,7 +49,8 @@ export class CoreService {
         }
     }
 
-    get onTrackSelected$(): Observable<any> {
-        return this.onTrackSelected.asObservable();
+    get raiseOnChanged$(): Observable<any> {
+        return this.onChanged.asObservable();
     }
+
 }

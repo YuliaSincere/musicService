@@ -10,6 +10,7 @@ namespace musicServiceApp.Controllers
 {
     [Route("api")]
     [ApiController]
+    [Produces("application/json")]
     public class MusicServiceController : ControllerBase
     {
         private readonly MusicServiceDbContext _context;
@@ -39,14 +40,20 @@ namespace musicServiceApp.Controllers
 
         [HttpGet]
         [Route("lyrics")]
-        public IEnumerable<LyricsDto> GetLyrics(int trackId, int languageId )
+        public string GetLyrics(int trackId, int languageId )
         {
+            var p = _context.Lyrics.ToArray();
             var lyricsFromDb = _context.Lyrics
-                .Select(lyr => ConvertToDto(lyr))
-                .Where(lyr => trackId == lyr.TrackId &&
-                        languageId == lyr.LanguageId)
-                .ToList();
-            return lyricsFromDb;
+
+                .SingleOrDefault(lyr => trackId == lyr.TrackId &&
+                        languageId == lyr.LanguageId);
+
+            if (lyricsFromDb == null)
+            {
+                return string.Empty;
+            }    
+
+        return lyricsFromDb.Text;
         }
 
         static private TrackDto ConvertToDto(Track t)
@@ -72,15 +79,5 @@ namespace musicServiceApp.Controllers
         return result;
         }
 
-        static private LyricsDto ConvertToDto(Lyrics lyr)
-        {
-            var result = new LyricsDto();
-
-            result.Id = lyr.Id;
-            result.TrackId = lyr.TrackId;
-            result.LanguageId = lyr.LanguageId;
-            result.Text = lyr.Text;
-        return result;
-        }
     }  
 }

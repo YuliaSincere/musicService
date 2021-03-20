@@ -26,7 +26,7 @@ constructor(private languageProvider: LanguageProvider, private coreService: Cor
 
     ngOnInit(): void {
         this.getLanguages();
-        this.onTrackSelectedSubscription = this.coreService.onTrackSelected$.subscribe(any => {
+        this.onTrackSelectedSubscription = this.coreService.raiseOnChanged$.subscribe(any => {
             console.log("puk")
             this.display = true;
         });
