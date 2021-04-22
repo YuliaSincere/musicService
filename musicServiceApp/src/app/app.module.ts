@@ -12,6 +12,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { ContentComponent } from './Components/content/content.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LanguageStoreComponent } from './Components/LanguageStore/languageStore.component';
+import { RegistrationComponent } from './Components/Registration/registration.component';
+import { AuthorizationComponent } from './Components/Authorization/authorization.component';
+import { UserPageComponent } from './Components/UserPage/userPage.component';
+import { FavsPageComponent } from './Components/FavsPage/favsPage.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { LanguageStoreComponent } from './Components/LanguageStore/languageStore
     LyricsComponent,
     TrackStoreComponent,
     ContentComponent,
-    LanguageStoreComponent
+    LanguageStoreComponent,
+    RegistrationComponent,
+    AuthorizationComponent,
+    UserPageComponent,
+    FavsPageComponent
   ],
   imports: [
     BrowserModule,
