@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace musicServiceServer.Database.Entities
 {
     /// <summary>
-    /// Информация о пользователе.
+    /// Информация о пользователе. 
     /// </summary>
 
     public class User
@@ -17,13 +17,7 @@ namespace musicServiceServer.Database.Entities
         /// <summary>
         /// Имя пользователя.
         /// </summary>
-        public string userName { get; set; }
+        public string userName { get; set; } 
 
-        /// <summary>
-        /// Идентификатор добавленной песни.
-        /// </summary>
-        public int TrackId { get; set; }
-
-        public virtual Track Track { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicServiceServer.Database;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -9,9 +10,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace musicService.Migrations
 {
     [DbContext(typeof(MusicServiceDbContext))]
-    partial class MusicServiceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210423100836_UpdateUser2")]
+    partial class UpdateUser2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,10 +98,15 @@ namespace musicService.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
+                    b.Property<int?>("TrackId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("userName")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TrackId");
 
                     b.ToTable("Users");
                 });
@@ -119,6 +126,15 @@ namespace musicService.Migrations
                         .IsRequired();
 
                     b.Navigation("Language");
+
+                    b.Navigation("Track");
+                });
+
+            modelBuilder.Entity("musicServiceServer.Database.Entities.User", b =>
+                {
+                    b.HasOne("musicServiceServer.Database.Entities.Track", "Track")
+                        .WithMany()
+                        .HasForeignKey("TrackId");
 
                     b.Navigation("Track");
                 });
