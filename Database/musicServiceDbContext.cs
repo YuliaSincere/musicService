@@ -9,6 +9,7 @@ namespace MusicServiceServer.Database
         public DbSet<Lyrics> Lyrics { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Fav> Favs { get; set; }
         public MusicServiceDbContext(DbContextOptions<MusicServiceDbContext> options) 
             : base(options)
         {
