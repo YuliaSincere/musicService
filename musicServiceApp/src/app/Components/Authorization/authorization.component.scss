@@ -3,7 +3,7 @@
 .mainGrid {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 30% 30% 40%;
+    grid-template-rows: 20% 20% 60%;
     background-color: chartreuse;
     height: 950px;
 }
@@ -30,4 +30,8 @@
     grid-column-end: three;
     grid-row-start: 1;
     grid-row-end: span 3;
+}
+
+.image {
+    width: 70%;
 }

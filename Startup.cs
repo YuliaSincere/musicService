@@ -73,8 +73,16 @@ namespace musicService
             {
                 FileProvider = new PhysicalFileProvider(
                     Path.Combine(env.ContentRootPath, @"covers")),
-                RequestPath = new PathString("/covers")
+                RequestPath = new PathString("/covers"),
             });
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.ContentRootPath, @"images")),
+                RequestPath = new PathString("/images"),
+            });
+
             app.UseRouting();
 
             app.UseAuthorization();
