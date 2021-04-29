@@ -6,6 +6,9 @@ using Microsoft.Extensions.Hosting;
 using MusicServiceServer.Database;
 using Microsoft.EntityFrameworkCore;
 using musicService.Database.Entities;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace musicService
 {
@@ -66,6 +69,12 @@ namespace musicService
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.ContentRootPath, @"covers")),
+                RequestPath = new PathString("/covers")
+            });
             app.UseRouting();
 
             app.UseAuthorization();
@@ -81,15 +90,16 @@ namespace musicService
                 */
             });
 
+            app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
-                spa.Options.SourcePath = "musicServiceApp";
-
                 if (env.IsDevelopment())
                 {
+                    spa.Options.SourcePath = "musicServiceApp";
+
                     //Использование внешнего сервера для клиента.
                     //Необходимо запустить ng serve в каталоге клиента
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");

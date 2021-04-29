@@ -40,7 +40,7 @@ namespace musicServiceApp.Controllers
 
         [HttpGet]
         [Route("lyrics")]
-        public string GetLyrics(int trackId, int languageId )
+        public string GetLyrics(int trackId, int languageId)
         {
             var p = _context.Lyrics.ToArray();
             var lyricsFromDb = _context.Lyrics
@@ -51,9 +51,9 @@ namespace musicServiceApp.Controllers
             if (lyricsFromDb == null)
             {
                 return string.Empty;
-            }    
+            }
 
-        return lyricsFromDb.Text;
+            return lyricsFromDb.Text;
         }
 
         static private TrackDto ConvertToDto(Track t)
@@ -66,8 +66,9 @@ namespace musicServiceApp.Controllers
             result.Year = t.Year;
             result.Genre = t.Genre;
             result.Duration = t.Duration.ToString(@"mm\:ss");
-            result.Picture = t.Picture;
-        return result;
+            result.Picture = "covers/" + t.Picture;
+
+            return result;
         }
 
         static private LanguageDto ConvertToDto(Language lan)
@@ -76,8 +77,9 @@ namespace musicServiceApp.Controllers
 
             result.Id = lan.Id;
             result.Name = lan.Name;
-        return result;
+
+            return result;
         }
 
-    }  
+    }
 }

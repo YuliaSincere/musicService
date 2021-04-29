@@ -15,11 +15,7 @@ export class TrackProvider {
 
     private tracksUrl = 'api/tracks'; //url to web api
 
-    async getTracks(): Promise<Track[]> {
-        const tracks = await this.http.get<Track[]>(this.tracksUrl).toPromise();
-        for (let i=0; i<tracks.length; i++) {
-            tracks[i].picture = "assets/CoverImages" + tracks[i].picture;
-        }
-        return Promise.resolve(tracks);
+    getTracks(): Promise<Track[]> {
+        return this.http.get<Track[]>(this.tracksUrl).toPromise();
     }
 }

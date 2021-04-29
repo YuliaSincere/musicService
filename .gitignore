@@ -1,6 +1,6 @@
 bin/
 obj/
-
+covers/
 # local env files
 .env.local
 .env.*.local
