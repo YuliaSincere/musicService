@@ -14,6 +14,7 @@ import { ChangedArgs } from 'src/app/Services/ChangedArgs';
 export class LyricsComponent implements OnInit, OnDestroy{
     @Input() //Входной параметр для компонента - тут язык (отображение)
     public lyricsText: string;
+    public resultString: string;
     private onChangedSubscription: Subscription;
 
     constructor(private coreService: CoreService, private lyricsProvider: LyricsProvider) { }
@@ -28,6 +29,7 @@ export class LyricsComponent implements OnInit, OnDestroy{
 
     private async updateLyrics(args : ChangedArgs) {
         this.lyricsText = await this.lyricsProvider.getLyrics(args.trackId, args.languageId);
+        this.resultString = this.lyricsText.replace(/\\n/g,"<br>");
     }
 
 }
