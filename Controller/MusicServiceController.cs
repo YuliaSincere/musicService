@@ -1,10 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using musicServiceServer.Database.Entities;
 using MusicServiceServer.Database;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Encodings.Web;
 
 namespace musicServiceApp.Controllers
 {
@@ -21,11 +19,13 @@ namespace musicServiceApp.Controllers
 
         [HttpGet]
         [Route("tracks")]
-        public IEnumerable<TrackDto> GetTracks()
+        public IEnumerable<SimpleTrackDto> GetTracks()
         {
             var trackFromDb = _context.Tracks
                 .OrderBy(t => t.Title)
-                .Select(t => ConvertToDto(t)).ToList();
+                .Select(t => ConvertToSimpleDto(t))
+                .ToList();
+
             return trackFromDb;
         }
 
@@ -44,7 +44,6 @@ namespace musicServiceApp.Controllers
         {
             var p = _context.Lyrics.ToArray();
             var lyricsFromDb = _context.Lyrics
-
                 .SingleOrDefault(lyr => trackId == lyr.TrackId &&
                         languageId == lyr.LanguageId);
 
@@ -56,18 +55,32 @@ namespace musicServiceApp.Controllers
             return lyricsFromDb.Text;
         }
 
-        // [HttpGet]
-        // [Route("trackInfo")]
-        // public IEnumerable<TrackDto> GetTrackInfo(int Id)
-        // {
-        //     var p = _context.Tracks.ToArray();
-        //     var trackInfo = _context.Tracks
+        [HttpGet]
+        [Route("track")]
+        public TrackDto GetTrack(int trackId)
+        {
+            var trackFromDb = _context.Tracks
+                .SingleOrDefault(t => t.Id == trackId);
 
-        //     .SingleOrDefault(tf => Id == tf.Id);
+            if (trackFromDb == null)
+            {
+                return null;
+            }
 
-        //     return (trackInfo.Author, trackInfo.Duration, trackInfo.Genre,
-        //     trackInfo.Title, trackInfo.Year, trackInfo.Picture);
-        // }
+            return ConvertToDto(trackFromDb);
+        }
+
+        static private SimpleTrackDto ConvertToSimpleDto(Track t)
+        {
+            var result = new SimpleTrackDto();
+
+            result.Id = t.Id;
+            result.Title = t.Title;
+            result.Author = t.Author;
+
+            return result;
+        }
+
         static private TrackDto ConvertToDto(Track t)
         {
             var result = new TrackDto();

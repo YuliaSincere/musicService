@@ -1,7 +1,6 @@
-import { Component, Input, OnInit} from '@angular/core'
-import { TrackInStore } from '../../Models/trackInStore';
+import { SimpleTrack } from './../../Models/track';
+import { Component, OnInit } from '@angular/core';
 import { TrackProvider } from 'src/app/Services/TrackProvider';
-import {MatGridListModule} from '@angular/material/grid-list';
 
 @Component({
     selector: 'app-trackStore',
@@ -13,7 +12,7 @@ export class TrackStoreComponent implements OnInit {
 
 constructor(private trackProvider: TrackProvider){}
 
-    public trackInStores: TrackInStore[];
+    public trackInStores: SimpleTrack[];
 
     ngOnInit(): void {
         this.getTracks();

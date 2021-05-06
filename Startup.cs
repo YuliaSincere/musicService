@@ -69,6 +69,20 @@ namespace musicService
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            var path = Path.Combine(env.ContentRootPath, @"covers");
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            path = Path.Combine(env.ContentRootPath, @"images");
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(

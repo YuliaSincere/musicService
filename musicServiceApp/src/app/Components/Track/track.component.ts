@@ -1,7 +1,8 @@
 import { Component, Input, OnInit} from '@angular/core'
 import { Track } from '../../Models/track';
 import { LanguageProvider } from 'src/app/Services/LanguageProvider';
-import { CoreService } from 'src/app/Services/coreService';
+import { CoreService } from 'src/app/Services/CoreService';
+
 
 @Component({
     selector: 'app-track',
@@ -13,7 +14,6 @@ export class TrackComponent {
     @Input() //Входной параметр для компонента - тут Песня (отображение)
     public track: Track;
     public imageUrl: string;
-    
 
     constructor( private coreService: CoreService ){}
 

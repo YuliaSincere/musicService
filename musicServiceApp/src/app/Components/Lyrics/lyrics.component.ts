@@ -1,9 +1,9 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core'
-import { Lyrics } from '../../Models/lyrics';
-import { LyricsProvider } from 'src/app/Services/LyricsProvider';
-import { CoreService } from 'src/app/Services/coreService';
-import { Subscription } from 'rxjs';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+
 import { ChangedArgs } from 'src/app/Services/ChangedArgs';
+import { CoreService } from 'src/app/Services/CoreService';
+import { LyricsProvider } from 'src/app/Services/LyricsProvider';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-lyrics',
