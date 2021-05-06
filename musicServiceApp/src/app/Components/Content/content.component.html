@@ -1,36 +1,34 @@
-<div class="mainContainer">
-            <div class="topPanel">
-                <div class="logo">
-                    <img class="image" src="images/logoCon.png">
+<div class="w-100 h-100 d-flex flex-column position-absolute">
+    <div class="row h-100 m-0 p-0">
+        <div class="col-5 track-column pt-3">
+
+            <div class="d-flex mb-3">
+                <img class="image"
+                     src="images/logoCon.png">
+                <div class="d-flex align-items-center">
+                    <span class="">MusicService</span>
                 </div>
-                <div class="title">MusicService</div>
             </div>
 
-            <div class="search">
-
-                <div class="input">
-                    <div class="example-full-width">
-                        <input placeholder="Ex. Love, Cat" value="Keywords">
-                    </div>
-                </div>
-
-                <div class="searchButton">
-                    <button>Search</button>
-                </div>
-
-            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Ex. Love, Cat" aria-label="Ex. Love, Cat" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+              </div>            
 
             <div class="trackStore">
                 <app-trackStore></app-trackStore>
             </div>
+        </div>
 
+        <div class="col-7 lyrics-column pt-3">
 
-            <div class="liked">
-                <app-likedButton></app-likedButton>
-            </div>
-
-            <div class="profile">
-                <app-profileButton></app-profileButton>
+            <div class="d-flex w-100">
+                <div class="ms-auto">
+                    <button type="button"
+                            class="btn btn-outline-primary me-3">Profile</button>
+                    <button type="button"
+                            class="btn btn-primary">Liked</button>
+                </div>
             </div>
 
             <div class="info">
@@ -43,4 +41,6 @@
             <div class="languages">
                 <app-languageStore></app-languageStore>
             </div>
+        </div>
+    </div>
 </div>

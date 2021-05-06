@@ -1,6 +1,6 @@
+import { SimpleTrack } from './../../Models/track';
 import { Component, OnInit } from '@angular/core';
 import { TrackProvider } from 'src/app/Services/TrackProvider';
-import { TrackInStore } from '../../Models/trackInStore';
 
 @Component({
     selector: 'app-trackStore',
@@ -12,7 +12,7 @@ export class TrackStoreComponent implements OnInit {
 
 constructor(private trackProvider: TrackProvider){}
 
-    public trackInStores: TrackInStore[];
+    public trackInStores: SimpleTrack[];
 
     ngOnInit(): void {
         this.getTracks();

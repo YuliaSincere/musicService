@@ -1,6 +1,6 @@
-import { Component, Input, OnInit} from '@angular/core'
+import { Component, Input } from '@angular/core';
 import { CoreService } from 'src/app/Services/CoreService';
-import { TrackInStore } from '../../Models/trackInStore';
+import { SimpleTrack } from './../../Models/track';
 
 @Component({
     selector: 'app-trackInStore',
@@ -10,16 +10,11 @@ import { TrackInStore } from '../../Models/trackInStore';
 
 export class TrackInStoreComponent {
     @Input() //Входной параметр для компонента - тут Песня (отображение)
-    public trackInStore: TrackInStore;
+    public trackInStore: SimpleTrack;
 
-    
     constructor( private coreService: CoreService ){}
 
     async onClick(){
-        //console.log("test")
-        //console.log(this.track.id)
-        //this.display = true;
         this.coreService.setTrackId(this.trackInStore.id);
-        //const result = await this.languageService.getLanguages();
     }
 } 
