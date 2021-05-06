@@ -1,7 +1,7 @@
 <div class="trackContainer">
-    <mat-grid-list class="container" cols="3" rowHeight="400px">
-        <mat-grid-tile *ngFor="let track of tracks">
-            <app-track [track]="track"></app-track>
-        </mat-grid-tile>
-    </mat-grid-list>
+    <ul class="container">
+        <li *ngFor="let trackInStore of trackInStores">
+            <app-trackInStore [trackInStore]="trackInStore"></app-trackInStore>
+        </li>
+    </ul>
 </div>

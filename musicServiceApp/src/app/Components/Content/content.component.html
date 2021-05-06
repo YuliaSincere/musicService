@@ -1,13 +1,47 @@
 <div class="mainContainer">
-    <div class="trackStore">
-        <div>
-            <app-trackStore></app-trackStore>
-        </div>
-        <div>
-            <app-languageStore></app-languageStore>
-        </div>
-        <div>
-            <app-lyrics></app-lyrics>
-        </div>
-    </div>
+            <div class="topPanel">
+                <div class="logo">
+                    <img class="image" src="images/logoCon.png">
+                </div>
+                <div class="title">MusicService</div>
+            </div>
+
+            <div class="search">
+
+                <div class="input">
+                    <mat-form-field class="example-full-width">
+                        <!-- <mat-label>Favorite food</mat-label> -->
+                        <input matInput placeholder="Ex. Love, Cat" value="Keywords">
+                      </mat-form-field>
+                </div>
+
+                <div class="searchButton">
+                    <button mat-raised-button color="primary">Search</button>
+                </div>
+
+            </div>
+
+            <div class="trackStore">
+                <app-trackStore></app-trackStore>
+            </div>
+
+
+            <div class="liked">
+                <app-likedButton></app-likedButton>
+            </div>
+
+            <div class="profile">
+                <app-profileButton></app-profileButton>
+            </div>
+
+            <div class="info">
+            </div>
+
+            <div class="lyrics">
+                <app-lyrics></app-lyrics>
+            </div>
+
+            <div class="languages">
+                <app-languageStore></app-languageStore>
+            </div>
 </div>

@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { RouterModule, Routes } from '@angular/router';
+import {MatInputModule} from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
 
 import { AppComponent } from './app.component';
 import { TrackComponent } from './Components/Track/track.component';
@@ -16,6 +19,10 @@ import { RegistrationComponent } from './Components/Registration/registration.co
 import { AuthorizationComponent } from './Components/Authorization/authorization.component';
 import { UserPageComponent } from './Components/UserPage/userPage.component';
 import { FavsPageComponent } from './Components/FavsPage/favsPage.component';
+import { LikedButtonComponent } from './Components/LikedButton/likedButton.component';
+import { ProfileButtonComponent } from './Components/profileButton/profileButton.component';
+import { TrackInStoreComponent } from './Components/TrackInStore/trackInStore.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -29,13 +36,20 @@ import { FavsPageComponent } from './Components/FavsPage/favsPage.component';
     RegistrationComponent,
     AuthorizationComponent,
     UserPageComponent,
-    FavsPageComponent
+    FavsPageComponent,
+    LikedButtonComponent,
+    ProfileButtonComponent,
+    TrackInStoreComponent
   ],
   imports: [
     BrowserModule,
     MatGridListModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

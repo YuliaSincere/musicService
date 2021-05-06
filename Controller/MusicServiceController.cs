@@ -56,6 +56,18 @@ namespace musicServiceApp.Controllers
             return lyricsFromDb.Text;
         }
 
+        // [HttpGet]
+        // [Route("trackInfo")]
+        // public IEnumerable<TrackDto> GetTrackInfo(int Id)
+        // {
+        //     var p = _context.Tracks.ToArray();
+        //     var trackInfo = _context.Tracks
+
+        //     .SingleOrDefault(tf => Id == tf.Id);
+
+        //     return (trackInfo.Author, trackInfo.Duration, trackInfo.Genre,
+        //     trackInfo.Title, trackInfo.Year, trackInfo.Picture);
+        // }
         static private TrackDto ConvertToDto(Track t)
         {
             var result = new TrackDto();

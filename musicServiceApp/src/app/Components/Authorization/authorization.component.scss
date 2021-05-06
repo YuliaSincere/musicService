@@ -4,28 +4,43 @@
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 20% 20% 60%;
-    background-color: chartreuse;
+    background-color: #f0f2ed;
     height: 950px;
 }
 
-.inputField {
-    background-color: aqua;
+.title {
+    background-color: #f0f2ed;
     grid-column-start: 1;
-    grid-column-end: two;
+    grid-column-end: span 1;
+    grid-row-start: 1;
+    grid-row-end: span 1;
+    text-align: center;
+    font-size: 7em;
+    color: #fb9833;
+    padding: 20px;
+    padding-top: 100px;
+}
+
+.inputField {
+    background-color: #f0f2ed;
+    grid-column-start: 1;
+    grid-column-end: span 1;
     grid-row-start: 2;
     grid-row-end: span 1;
+    text-align: center;
 }
 
 .regField {
-    background-color: blue;
+    background-color: #f0f2ed;
     grid-column-start: 1;
-    grid-column-end: two;
+    grid-column-end: span 1;
     grid-row-start: 3;
     grid-row-end: span 1;
+    text-align: center;
 }
 
 .iconField {
-    background-color: brown;
+    background-color: #f0f2ed;
     grid-column-start: 2;
     grid-column-end: three;
     grid-row-start: 1;
@@ -33,5 +48,5 @@
 }
 
 .image {
-    width: 70%;
+    width: 90%;
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit} from '@angular/core'
-import { Track } from '../../Models/track';
+import { TrackInStore } from '../../Models/trackInStore';
 import { TrackProvider } from 'src/app/Services/TrackProvider';
 import {MatGridListModule} from '@angular/material/grid-list';
 
@@ -13,13 +13,13 @@ export class TrackStoreComponent implements OnInit {
 
 constructor(private trackProvider: TrackProvider){}
 
-    public tracks: Track[];
+    public trackInStores: TrackInStore[];
 
     ngOnInit(): void {
         this.getTracks();
     }
 
     private async getTracks() {
-        this.tracks = await this.trackProvider.getTracks();
+        this.trackInStores = await this.trackProvider.getTracks();
     }
 }
