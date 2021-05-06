@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { TrackStoreComponent } from './Components/trackStore/trackStore.component';
-import { ContentComponent } from './Components/content/content.component';
 import { AuthorizationComponent } from './Components/Authorization/authorization.component';
 import { UserPageComponent } from './Components/UserPage/userPage.component';
 import { FavsPageComponent } from './Components/FavsPage/favsPage.component';
 import { RegistrationComponent } from './Components/Registration/registration.component';
+import { ContentComponent } from './Components/Content/content.component';
 
 const routes: Routes = [
   { path: "musicService", component: ContentComponent },

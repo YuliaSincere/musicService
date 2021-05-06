@@ -1,8 +1,8 @@
-import { Component, Input, OnDestroy, OnInit} from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { CoreService } from 'src/app/Services/CoreService';
 import { Language } from '../../Models/language';
 import { LanguageProvider } from 'src/app/Services/LanguageProvider';
-import {MatGridListModule} from '@angular/material/grid-list';
-import { CoreService } from 'src/app/Services/coreService';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -27,7 +27,6 @@ constructor(private languageProvider: LanguageProvider, private coreService: Cor
     ngOnInit(): void {
         this.getLanguages();
         this.onTrackSelectedSubscription = this.coreService.raiseOnChanged$.subscribe(any => {
-            console.log("puk")
             this.display = true;
         });
     }

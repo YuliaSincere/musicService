@@ -1,5 +1,5 @@
 import { Component, Input, OnInit} from '@angular/core'
-import { CoreService } from 'src/app/Services/coreService';
+import { CoreService } from 'src/app/Services/CoreService';
 import { TrackInStore } from '../../Models/trackInStore';
 
 @Component({

@@ -1,7 +1,6 @@
-import { Component, Input, OnInit} from '@angular/core'
-import { TrackInStore } from '../../Models/trackInStore';
+import { Component, OnInit } from '@angular/core';
 import { TrackProvider } from 'src/app/Services/TrackProvider';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { TrackInStore } from '../../Models/trackInStore';
 
 @Component({
     selector: 'app-trackStore',
