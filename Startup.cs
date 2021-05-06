@@ -121,6 +121,7 @@ namespace musicService
                 {
                     context.Database.Migrate(); //создание базы
                     DatabaseSeeder.Seed(context);
+                    // подключение к порту базы - файл ConnectionString.json (сервер, порт, логин, пароль)
                 }
             }
         }
