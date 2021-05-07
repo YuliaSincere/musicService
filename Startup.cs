@@ -9,6 +9,7 @@ using musicService.Database.Entities;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace musicService
 {
@@ -66,6 +67,15 @@ namespace musicService
                 app.UseHsts();
             }
 
+            // Обработка ошибок на сервере и отправка текста ошибки на клиент.
+            app.UseExceptionHandler(c => c.Run(async context =>
+            {
+                var exception = context.Features
+                    .Get<IExceptionHandlerPathFeature>()
+                    .Error;
+                await context.Response.WriteAsJsonAsync(exception.Message);
+            }));
+
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -98,18 +108,11 @@ namespace musicService
             });
 
             app.UseRouting();
-
             app.UseAuthorization();
-
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                /*
-                endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Bookstore}/{action=Index}");
-                */
             });
 
             app.UseSpaStaticFiles();
