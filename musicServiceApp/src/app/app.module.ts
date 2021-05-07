@@ -14,6 +14,7 @@ import { LyricsComponent } from './Components/Lyrics/lyrics.component';
 import { ProfileButtonComponent } from './Components/profileButton/profileButton.component';
 import { RegistrationComponent } from './Components/Registration/registration.component';
 import { TrackComponent } from './Components/Track/track.component';
+import { trackInfoComponent } from './Components/TrackInfo/trackInfo.component';
 import { TrackInStoreComponent } from './Components/TrackInStore/trackInStore.component';
 import { TrackStoreComponent } from './Components/TrackStore/trackStore.component';
 import { UserPageComponent } from './Components/UserPage/userPage.component';
@@ -34,7 +35,8 @@ import { UserPageComponent } from './Components/UserPage/userPage.component';
     FavsPageComponent,
     LikedButtonComponent,
     ProfileButtonComponent,
-    TrackInStoreComponent
+    TrackInStoreComponent,
+    trackInfoComponent
   ],
   imports: [
     BrowserModule,

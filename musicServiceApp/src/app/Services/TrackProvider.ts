@@ -18,10 +18,10 @@ export class TrackProvider {
         return this.http.get<SimpleTrack[]>(this.tracksUrl).toPromise();
     }
 
-    getTrack(trackId: number): Promise<Track[]> {
+    getTrack(trackId: number): Promise<Track> {
         const params = new HttpParams()
             .append('trackId', trackId.toString());
 
-        return this.http.get<Track[]>(this.trackUrl, { params: params }).toPromise();
+        return this.http.get<Track>(this.trackUrl, { params: params }).toPromise();
     }
 }

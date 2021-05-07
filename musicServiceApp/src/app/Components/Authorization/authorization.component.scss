@@ -1,52 +1,69 @@
-
-
-.mainGrid {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 20% 20% 60%;
-    background-color: #f0f2ed;
-    height: 950px;
+.main {
+    background-color: #e6eaff;
 }
-
-.title {
-    background-color: #f0f2ed;
-    grid-column-start: 1;
-    grid-column-end: span 1;
-    grid-row-start: 1;
-    grid-row-end: span 1;
-    text-align: center;
-    font-size: 7em;
-    color: #fb9833;
-    padding: 20px;
-    padding-top: 100px;
-}
-
-.inputField {
-    background-color: #f0f2ed;
-    grid-column-start: 1;
-    grid-column-end: span 1;
-    grid-row-start: 2;
-    grid-row-end: span 1;
-    text-align: center;
-}
-
-.regField {
-    background-color: #f0f2ed;
-    grid-column-start: 1;
-    grid-column-end: span 1;
-    grid-row-start: 3;
-    grid-row-end: span 1;
-    text-align: center;
-}
-
-.iconField {
-    background-color: #f0f2ed;
-    grid-column-start: 2;
-    grid-column-end: three;
-    grid-row-start: 1;
-    grid-row-end: span 3;
-}
-
 .image {
-    width: 90%;
+    width: 80%;
+    align-self: center;
+    margin-left: auto;
 }
+.title {
+    color: #1a3eff;
+    font-weight: bold;
+}
+
+.inputPlace {
+    margin-top: auto;
+}
+
+
+
+// .mainGrid {
+//     display: grid;
+//     grid-template-columns: 50% 50%;
+//     grid-template-rows: 20% 20% 60%;
+//     background-color: #f0f2ed;
+//     height: 950px;
+// }
+
+// .title {
+//     background-color: #f0f2ed;
+//     grid-column-start: 1;
+//     grid-column-end: span 1;
+//     grid-row-start: 1;
+//     grid-row-end: span 1;
+//     text-align: center;
+//     font-size: 7em;
+//     color: #fb9833;
+//     padding: 20px;
+//     padding-top: 100px;
+// }
+
+// .inputField {
+//     background-color: #f0f2ed;
+//     grid-column-start: 1;
+//     grid-column-end: span 1;
+//     grid-row-start: 2;
+//     grid-row-end: span 1;
+//     text-align: center;
+// }
+
+// .regField {
+//     background-color: #f0f2ed;
+//     grid-column-start: 1;
+//     grid-column-end: span 1;
+//     grid-row-start: 3;
+//     grid-row-end: span 1;
+//     text-align: center;
+// }
+
+// .iconField {
+//     background-color: #f0f2ed;
+//     grid-column-start: 2;
+//     grid-column-end: three;
+//     grid-row-start: 1;
+//     grid-row-end: span 3;
+// }
+
+// .image {
+//     width: 90%;
+// }

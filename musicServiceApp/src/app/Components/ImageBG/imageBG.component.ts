@@ -1,38 +1,33 @@
-import { Input } from '@angular/core';
-import { Component, OnInit} from '@angular/core'
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+
 import { ChangedArgs } from 'src/app/Services/ChangedArgs';
 import { CoreService } from 'src/app/Services/CoreService';
 import { ImageProvider } from 'src/app/Services/ImageProvider';
+import { Subscription } from 'rxjs';
 
 @Component({
-    selector: 'app-content',
-    templateUrl: './content.component.html',
-    styleUrls: ['./content.component.scss']
+    selector: 'app-imageBG',
+    templateUrl: './imageBG.component.html',
+    styleUrls: ['./imageBG.component.scss']
 })
 
-export class ContentComponent {
-    display: false;
-    
+export class ImageBGComponent implements OnInit, OnDestroy{
     @Input() //Входной параметр для компонента - тут картинка (отображение)
     public imageName: string;
     private onChangedSubscription: Subscription;
 
-    constructor(private router: Router, private coreService: CoreService, private imageProvider: ImageProvider) { }
+    constructor(private coreService: CoreService, private imageProvider: ImageProvider) { }
     ngOnDestroy(): void {
         this.onChangedSubscription.unsubscribe();
     }
     ngOnInit(): void {
         this.onChangedSubscription = this.coreService.raiseOnChanged$.subscribe((args : ChangedArgs) => {
             this.getImage(args);
-            this.router.navigateByUrl('/');
         })
     }
 
     private async getImage(args : ChangedArgs) {
-        const imageName = await this.imageProvider.getImage(args.trackId);
-        this.imageName = `url("${imageName}")`;
-        
+        this.imageName = await this.imageProvider.getImage(args.trackId);
     }
+
 }

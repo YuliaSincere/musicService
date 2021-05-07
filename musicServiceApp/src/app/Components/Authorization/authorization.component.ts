@@ -7,5 +7,13 @@ import { Component, Input, OnDestroy, OnInit} from '@angular/core'
 })
 
 export class AuthorizationComponent {
+    async onClickSignIn()
+    {
 
+    }
+
+    async onClickSignUp() 
+    {
+
+    }
 }

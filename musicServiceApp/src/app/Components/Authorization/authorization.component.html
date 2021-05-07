@@ -1,22 +1,19 @@
-<div class="mainGrid">
+<div class="main w-100 h-100 d-flex flex-column position-absolute">
+    <div class="d-flex flex-column mx-auto mt-5">
+        <span class="title fs-2 mx-auto">
+            Authorization
+        </span>
 
-    <div class="title">
-        Authorization
-    </div>
 
-    <div class="inputField">
-        <div class="example-full-width">
-            <label>Enter your User Name</label>
-            <input placeholder="Ex. vasya24" />
+        <div class="input-group mt-2">
+            <input type="text" class="form-control inputPlace" placeholder="Enter your User Name"
+                aria-label="Ex. Love, Cat" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" (click)="onClickSignIn()" type="button" id="button-addon2">Sign
+                In</button>
         </div>
 
-        <div class="regField">
-            <button>Enter</button>
-        </div>
 
-        <div class="iconField">
-            <img class="image"
-                 src="images/logoDec.png">
-        </div>
+        <button type="button" (click)="onClickSignUp()" class="btn btn-primary mx-auto mt-2">Sign Up</button>
 
     </div>
+</div>

@@ -70,6 +70,21 @@ namespace musicServiceApp.Controllers
             return ConvertToDto(trackFromDb);
         }
 
+        [HttpGet]
+        [Route("image")]
+        public string GetImage(int trackId)
+        {
+            var imageFromDb = _context.Tracks
+                .SingleOrDefault(t => t.Id == trackId);
+
+            if (imageFromDb == null)
+            {
+                return null;
+            }
+
+            return "covers/" + imageFromDb.Picture;
+        }
+
         static private SimpleTrackDto ConvertToSimpleDto(Track t)
         {
             var result = new SimpleTrackDto();
@@ -80,6 +95,7 @@ namespace musicServiceApp.Controllers
 
             return result;
         }
+
 
         static private TrackDto ConvertToDto(Track t)
         {
