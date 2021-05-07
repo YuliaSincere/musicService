@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,7 +13,6 @@ import { LanguageStoreComponent } from './Components/LanguageStore/languageStore
 import { LikedButtonComponent } from './Components/LikedButton/likedButton.component';
 import { LyricsComponent } from './Components/Lyrics/lyrics.component';
 import { ProfileButtonComponent } from './Components/profileButton/profileButton.component';
-import { RegistrationComponent } from './Components/Registration/registration.component';
 import { TrackComponent } from './Components/Track/track.component';
 import { trackInfoComponent } from './Components/TrackInfo/trackInfo.component';
 import { TrackInStoreComponent } from './Components/TrackInStore/trackInStore.component';
@@ -29,7 +29,6 @@ import { UserPageComponent } from './Components/UserPage/userPage.component';
     TrackStoreComponent,
     ContentComponent,
     LanguageStoreComponent,
-    RegistrationComponent,
     AuthorizationComponent,
     UserPageComponent,
     FavsPageComponent,
@@ -42,7 +41,8 @@ import { UserPageComponent } from './Components/UserPage/userPage.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

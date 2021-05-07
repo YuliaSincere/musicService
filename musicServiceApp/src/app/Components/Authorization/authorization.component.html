@@ -1,19 +1,30 @@
 <div class="main w-100 h-100 d-flex flex-column position-absolute">
     <div class="d-flex flex-column mx-auto mt-5">
         <span class="title fs-2 mx-auto">
-            Authorization
+            {{registration ? "Registration":"Authorization"}}
         </span>
 
 
         <div class="input-group mt-2">
-            <input type="text" class="form-control inputPlace" placeholder="Enter your User Name"
-                aria-label="Ex. Love, Cat" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" (click)="onClickSignIn()" type="button" id="button-addon2">Sign
-                In</button>
+            <input type="text"
+                   [(ngModel)]="userName"
+                   class="form-control inputPlace"
+                   placeholder="Enter your User Name"
+                   aria-label="Ex. Love, Cat"
+                   aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary"
+                    (click)="onClickSignIn()"
+                    type="button"
+                    id="button-addon2">
+                {{registration ? "Ok":"Sign In"}}</button>
         </div>
 
+        <div *ngIf="hasError" class="text-danger">{{error}}</div>
 
-        <button type="button" (click)="onClickSignUp()" class="btn btn-primary mx-auto mt-2">Sign Up</button>
+        <button type="button"
+                (click)="onClickSignUp()"
+                *ngIf="!registration"
+                class="btn btn-primary mx-auto mt-2">Sign Up</button>
 
     </div>
 </div>

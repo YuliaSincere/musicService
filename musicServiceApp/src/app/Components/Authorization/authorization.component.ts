@@ -1,4 +1,6 @@
-import { Component, Input, OnDestroy, OnInit} from '@angular/core'
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from './../../Services/user.service';
 
 @Component({
     selector: 'app-authorization',
@@ -7,13 +9,34 @@ import { Component, Input, OnDestroy, OnInit} from '@angular/core'
 })
 
 export class AuthorizationComponent {
-    async onClickSignIn()
-    {
+    registration = false;
+    hasError = false;
+    userName: string = null;
+    error: string = null;
 
+    constructor(private userService: UserService, private router: Router) {
     }
 
-    async onClickSignUp() 
-    {
+    async onClickSignIn() {
+        this.error = null;
+        this.hasError = false;
 
+        try {
+            if (this.registration) {
+                await this.userService.signUp(this.userName);
+            } else {
+                await this.userService.signIn(this.userName);
+            }
+
+            this.router.navigateByUrl("/");
+
+        } catch (errorResponse) {
+            this.error = errorResponse.error;
+            this.hasError = true;
+        }
+    }
+
+    onClickSignUp() {
+        this.registration = true;
     }
 }
