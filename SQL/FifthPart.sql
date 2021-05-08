@@ -961,7 +961,7 @@ select "Tracks"."Id", "Languages"."Id",
 О другой любви, о другой любви. \n
 Все мои слезы были израсходованы, о, о, о \n'
 from "Tracks", "Languages" 
-where "Tracks"."Title" = 'c' and "Languages"."Name" = 'Russian'
+where "Tracks"."Title" = 'Another Love' and "Languages"."Name" = 'Russian'
 union all
 select "Tracks"."Id", "Languages"."Id",
 'I wanna take you somewhere so you know I care \n
