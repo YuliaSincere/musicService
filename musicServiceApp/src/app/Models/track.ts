@@ -5,6 +5,7 @@ export interface SimpleTrack {
 }
 
 export interface Track extends SimpleTrack {
+
     year: string;
     genre: string;
     duration: string;

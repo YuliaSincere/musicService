@@ -2,7 +2,10 @@
     <!-- <div class="image">
         <img class="imageImage" src="{{track.picture}}">
     </div> -->
-
+    <img (click)="onClick()"
+                class="mx-auto mt-2 like-image"
+                *ngIf="likedStatusVisible"
+                [src]='likedStatus ? "images/like.png" : "images/unlike.png"'>
     <div class="d-flex w-100">
         <div class="title fs-1">{{track.title}}</div>
         <span class=" fs-1">&nbsp;-&nbsp;</span>

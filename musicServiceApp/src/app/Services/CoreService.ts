@@ -49,6 +49,9 @@ export class CoreService {
         }
     }
 
+    /**
+     * Событие об изменении трека, когда он выбран.
+     */
     get raiseOnChanged$(): Observable<any> {
         return this.onChanged.asObservable();
     }

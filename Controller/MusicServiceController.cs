@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace musicServiceApp.Controllers
 {
+
+
+
     [Route("api")]
     [ApiController]
     [Produces("application/json")]
@@ -71,8 +74,8 @@ namespace musicServiceApp.Controllers
         }
 
         [HttpGet]
-        [Route("image")]
-        public string GetImage(int trackId)
+        [Route("cover")]
+        public string GetCover(int trackId)
         {
             var imageFromDb = _context.Tracks
                 .SingleOrDefault(t => t.Id == trackId);
@@ -85,13 +88,87 @@ namespace musicServiceApp.Controllers
             return "covers/" + imageFromDb.Picture;
         }
 
+        [HttpGet]
+        [Route("liked")]
+        public bool GetLikedStatus(int trackId, string userName)
+        {
+            var user = _context.Users
+               .SingleOrDefault(user => user.userName == userName);
+            if (user == null)
+            {
+                return false;
+            }
+            var likedStatus = _context.Favs
+                .Any(f => f.TrackId == trackId
+                && f.UserId == user.Id);
+            return likedStatus;
+        }
+
+
+
+        [HttpPost]
+        [Route("liked")]
+        // public IActionResult SetLikedStatus(int trackId, string userName, bool likedStatus)
+        public IActionResult SetLikedStatus(SetLikedStatusDto setLikedStatusDto)
+        {
+
+            var user = _context.Users
+               .SingleOrDefault(user => user.userName == setLikedStatusDto.UserName);
+            if (user == null)
+            {
+                return BadRequest("Нет такого пользователя");
+            }
+
+            var liked = _context.Favs
+                .SingleOrDefault(f => f.TrackId == setLikedStatusDto.TrackId
+                && f.UserId == user.Id);
+
+            if (liked == null)
+            {
+                // Песня не добавлена в избранное данным пользователем.
+                if (setLikedStatusDto.LikedStatus)
+                {
+                    // Добавление песни в избранное.
+                    var newFav = new Fav();
+                    newFav.TrackId = setLikedStatusDto.TrackId;
+                    newFav.UserId = user.Id;
+
+                    try
+                    {
+                        _context.Favs.Add(newFav);
+                        _context.SaveChanges();
+                    }
+                    catch (System.Exception error)
+                    {
+                        return BadRequest(error.Message);
+                    }
+                }
+                return NoContent();
+            }
+
+            // Песня добавлена в избранное данным пользователем.
+            if (!setLikedStatusDto.LikedStatus)
+            {
+                // Удаление песни из избранного.
+
+                try
+                {
+                    _context.Favs.Remove(liked);
+                    _context.SaveChanges();
+                }
+                catch (System.Exception error)
+                {
+                    return BadRequest(error.Message);
+                }
+            }
+
+            return NoContent();
+        }
+
+
         static private SimpleTrackDto ConvertToSimpleDto(Track t)
         {
-            var result = new SimpleTrackDto();
-
-            result.Id = t.Id;
-            result.Title = t.Title;
-            result.Author = t.Author;
+            var result = new SimpleTrackDto(t.Id, t.Title, t.Author);
 
             return result;
         }
@@ -99,15 +176,7 @@ namespace musicServiceApp.Controllers
 
         static private TrackDto ConvertToDto(Track t)
         {
-            var result = new TrackDto();
-
-            result.Id = t.Id;
-            result.Title = t.Title;
-            result.Author = t.Author;
-            result.Year = t.Year;
-            result.Genre = t.Genre;
-            result.Duration = t.Duration.ToString(@"mm\:ss");
-            result.Picture = "covers/" + t.Picture;
+            var result = new TrackDto(t.Id, t.Title, t.Author, t.Year, t.Genre, t.Duration.ToString(@"mm\:ss"), "covers/" + t.Picture);
 
             return result;
         }

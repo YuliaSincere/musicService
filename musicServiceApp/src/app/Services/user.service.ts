@@ -34,4 +34,12 @@ export class UserService {
                 this.userName = userName;
             });
     }
+
+    getUserName(): string {
+        return this.userName;
+    }
+
+    getUserSignedInStatus(): boolean {
+        return (this.userName !== null);
+    }
 }
