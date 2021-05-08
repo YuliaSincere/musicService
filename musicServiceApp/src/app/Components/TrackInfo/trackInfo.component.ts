@@ -7,6 +7,7 @@ import { TrackProvider } from 'src/app/Services/TrackProvider';
 import { Subscription } from 'rxjs';
 import { Track } from 'src/app/Models/track';
 import { UserService } from 'src/app/Services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-trackInfo',
@@ -19,11 +20,10 @@ export class TrackInfoComponent implements OnInit, OnDestroy {
     public track: Track;
     likedStatus = false;
     likedStatusVisible = false;
-
-
-    // public lyricsText: string;
-    // public resultString: string;
+    display: false;
+    public imageName: string;
     private onChangedSubscription: Subscription;
+
 
     constructor(
         private coreService: CoreService,

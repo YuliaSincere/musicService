@@ -4,18 +4,35 @@
 }
 
 .track-column {
-    background-color: #faf3f3;
+    background-color: #e7ebff;
+    overflow-y:auto;
 }
 
 .lyrics-column {
     padding-right: 1rem;    
+    overflow-y:auto;
 }
 
-.btn-primary {
-    background-color: red;
-    border: 0px solid transparent;
-    box-shadow: rgba($color: #000000, $alpha: 0.5) 1px 1px 2px 2px;
+.title {
+    color: #056efd;
 }
+
+.lyrics-column {
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.whiteBlock {
+    background-color: white;
+    border-radius: 10px;
+    width : max-content;
+    padding: 1rem;
+
+}
+
+ .lyrics {
+    text-align: center;
+ }
 
 /*
 .mainContainer {

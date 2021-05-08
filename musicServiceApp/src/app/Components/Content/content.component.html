@@ -3,16 +3,22 @@
         <div class="col-5 track-column pt-3">
 
             <div class="d-flex mb-3">
-                <img class="image" src="images/logoCon.png">
+                <img class="image"
+                     src="images/logoCon.png">
                 <div class="d-flex align-items-center">
-                    <span class="">MusicService</span>
+                    <span class="title fs-1">MusicService</span>
                 </div>
             </div>
 
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Ex. Love, Cat" aria-label="Ex. Love, Cat"
-                    aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                <input type="text"
+                       class="form-control"
+                       placeholder="Ex. Love, Cat"
+                       aria-label="Ex. Love, Cat"
+                       aria-describedby="button-addon2">
+                <button class="btn btn-outline-primary"
+                        type="button"
+                        id="button-addon2">Search</button>
             </div>
 
             <div class="trackStore">
@@ -20,26 +26,32 @@
             </div>
         </div>
 
-        <div class="col-7 lyrics-column pt-3" [style.background] = "imageName">
-
+        <div class="col-7 lyrics-column pt-3 backImage justify-content-center"
+             [style.background]="imageName">
             <div class="d-flex w-100">
                 <div class="ms-auto">
-                    <button type="button" class="btn btn-outline-primary me-3">Profile</button>
-                    <button type="button" class="btn btn-primary">Liked</button>
+                    <button type="button"
+                            class="btn btn-outline-primary me-3">Profile</button>
+                    <button type="button"
+                            class="btn btn-primary">Liked</button>
                 </div>
             </div>
 
-            <div class="info">
+
+            <div class="whiteBlock justify-content-center mx-auto">
+            <div class="text-block mx-auto align-items-center">
+            <div class="info mx-auto">
                 <app-trackInfo></app-trackInfo>
             </div>
 
-            <div class="lyrics">
+            <div class="lyrics mx-auto">
                 <app-lyrics></app-lyrics>
-            </div>
-
-            <div class="languages">
-                <app-languageStore></app-languageStore>
             </div>
         </div>
     </div>
+            <div class="languages">
+                <app-languageStore></app-languageStore>
+            </div> 
+    </div>
 </div>
+</div> 

@@ -33,6 +33,5 @@ export class ContentComponent implements OnInit, OnDestroy {
     private async getCover(args: ChangedArgs) {
         const imageName = await this.trackProvider.getCover(args.trackId);
         this.imageName = `url("${imageName}")`;
-
     }
 }

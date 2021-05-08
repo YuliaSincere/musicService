@@ -1,18 +1,27 @@
-<div class="container w-100 h-100 d-flex flex-column">
-    <!-- <div class="image">
-        <img class="imageImage" src="{{track.picture}}">
-    </div> -->
-    <img (click)="onClick()"
-                class="mx-auto mt-2 like-image"
-                *ngIf="likedStatusVisible"
-                [src]='likedStatus ? "images/like.png" : "images/unlike.png"'>
-    <div class="d-flex w-100">
-        <div class="title fs-1">{{track.title}}</div>
-        <span class=" fs-1">&nbsp;-&nbsp;</span>
-        <div class="author fs-1">{{track.author}}</div>
+<div class="container w-100 h-100 d-flex flex-column ">
+    <div class="d-flex justify-content-center w-100">
+        <div class="image">
+            <img class="imageImage"
+                 src="{{track.picture}}">
+        </div>
     </div>
 
-    <div class="genre">{{track.genre}}</div>
-    <div class="year">{{track.year}}</div>
-    <div class="duration">{{track.duration}}</div>
+    <div class="whiteBlock">
+
+        <img (click)="onClick()"
+             class="mx-auto mt-2 like-image"
+             *ngIf="likedStatusVisible"
+             [src]='likedStatus ? "images/like.png" : "images/unlike.png"'>
+        <div class="d-flex justify-content-center  mx-auto w-100">
+            <div class="title fs-1">{{track.title}}</div>
+            <span class=" fs-1">&nbsp;-&nbsp;</span>
+            <div class="author fs-1">{{track.author}}</div>
+        </div>
+        <div class="d-flex justify-content-center w-100">
+            <div class="genre">{{track.genre}}</div>
+            <span class=" fs-1">&nbsp; &nbsp; &nbsp;</span>
+            <div class="year">{{track.year}}</div>
+            <span class=" fs-1">&nbsp; &nbsp; &nbsp;</span>
+            <div class="duration">{{track.duration}}</div>
+        </div>
 </div>
