@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MusicServiceServer.Database;
 using Microsoft.EntityFrameworkCore;
-using musicService.Database.Entities;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Diagnostics;
+using musicService.Database;
+using MusicServiceServer.Database;
 
 namespace musicService
 {
@@ -56,6 +56,8 @@ namespace musicService
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            DatabaseSqlFilesExecuter.SetContentPath(env.ContentRootPath);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -137,7 +139,6 @@ namespace musicService
                 using (var context = scope.ServiceProvider.GetService<MusicServiceDbContext>())
                 {
                     context.Database.Migrate(); //создание базы
-                    DatabaseSeeder.Seed(context);
                     // подключение к порту базы - файл ConnectionString.json (сервер, порт, логин, пароль)
                 }
             }

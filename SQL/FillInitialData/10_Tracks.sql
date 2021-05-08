@@ -1,5 +1,3 @@
----delete from "Tracks";
-
 insert into "Tracks" ("Title","Author","Year","Genre","Duration","Picture") values
 -- 1-10
 ('Living In A World','Axxis','1989','Metal','00:3:53','1.jpg'),

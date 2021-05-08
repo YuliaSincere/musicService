@@ -1,8 +1,5 @@
 -- Заполнение 1-10
 
---delete from "Lyrics";
-
-
 insert into "Lyrics" ("TrackId","LanguageId","Text")
 select "Tracks"."Id", "Languages"."Id",
 'В их жилах растет лихорадка \n
