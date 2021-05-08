@@ -104,6 +104,30 @@ namespace musicServiceApp.Controllers
             return likedStatus;
         }
 
+        [HttpGet]
+        [Route("likedtracks")]
+        public IEnumerable<SimpleTrackDto> GetLikedTracks(int trackId, string userName)
+        {
+            var user = _context.Users
+               .SingleOrDefault(user => user.userName == userName);
+            if (user == null)
+            {
+                return Enumerable.Empty<SimpleTrackDto>();
+            }
+            var trackIds = _context.Favs
+            .Where(f => f.UserId == user.Id)
+            .Select(f => f.TrackId)
+            .ToArray();
+
+            var likedTrackFromDb = _context.Tracks
+                .Where(t => trackIds.Contains(t.Id))
+                .OrderBy(t => t.Title)
+                .Select(t => ConvertToSimpleDto(t))
+                .ToList();
+
+            return likedTrackFromDb;
+        }
+
 
 
         [HttpPost]

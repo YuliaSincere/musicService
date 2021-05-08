@@ -13,6 +13,7 @@ export class TrackProvider {
         private http: HttpClient) { }
 
     private tracksUrl = 'api/tracks'; // Получение всех песен.
+    private likedTracksUrl = 'api/likedtracks'; // Получение всех избранных песен.
     private trackUrl = 'api/track'; // Получение конкретной песни.
     private coverUrl = 'api/cover'; // Получение обложки песни.
     private likedStatusUrl = 'api/liked'; // Получение статуса добавления в избранное.
@@ -49,5 +50,12 @@ export class TrackProvider {
         };
         return this.http.post<void>(this.likedStatusUrl, params).toPromise();
     }
+
+    getLikedTracks(userName: string): Promise<SimpleTrack[]> {
+        const params = new HttpParams()
+            .append('userName', userName);
+        return this.http.get<SimpleTrack[]>(this.likedTracksUrl, { params: params }).toPromise();
+    }
+
 
 }

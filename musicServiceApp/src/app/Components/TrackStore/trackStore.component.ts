@@ -1,6 +1,7 @@
 import { SimpleTrack } from './../../Models/track';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TrackProvider } from 'src/app/Services/TrackProvider';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
     selector: 'app-trackStore',
@@ -10,15 +11,23 @@ import { TrackProvider } from 'src/app/Services/TrackProvider';
 
 export class TrackStoreComponent implements OnInit {
 
-constructor(private trackProvider: TrackProvider){}
+    constructor(private trackProvider: TrackProvider, private userService: UserService) { }
 
     public trackInStores: SimpleTrack[];
 
+    @Input()
+    set showLiked(value: boolean) {
+        this.getTracks(value);
+    }
+    
     ngOnInit(): void {
-        this.getTracks();
+        this.getTracks(false);
     }
 
-    private async getTracks() {
-        this.trackInStores = await this.trackProvider.getTracks();
+    private async getTracks(showLiked: boolean) {
+
+        this.trackInStores = showLiked
+            ? await this.trackProvider.getLikedTracks(this.userService.getUserName())
+            : await this.trackProvider.getTracks();
     }
 }

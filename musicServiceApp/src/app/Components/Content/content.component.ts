@@ -12,7 +12,8 @@ import { TrackProvider } from 'src/app/Services/TrackProvider';
 })
 
 export class ContentComponent implements OnInit, OnDestroy {
-    display: false;
+    display = false;
+    showLiked = false;
 
     @Input() // Входной параметр для компонента - тут картинка (отображение)
     public imageName: string;
@@ -30,8 +31,15 @@ export class ContentComponent implements OnInit, OnDestroy {
         });
     }
 
+    showLikedClick() {
+        this.showLiked = !this.showLiked;
+        
+    }
+
     private async getCover(args: ChangedArgs) {
         const imageName = await this.trackProvider.getCover(args.trackId);
         this.imageName = `url("${imageName}")`;
     }
+
+
 }

@@ -22,7 +22,7 @@
             </div>
 
             <div class="trackStore">
-                <app-trackStore></app-trackStore>
+                <app-trackStore [showLiked]="showLiked"></app-trackStore>
             </div>
         </div>
 
@@ -33,25 +33,27 @@
                     <button type="button"
                             class="btn btn-outline-primary me-3">Profile</button>
                     <button type="button"
-                            class="btn btn-primary">Liked</button>
+                            (click)="showLikedClick()"
+                            class="btn btn-primary">
+                         {{showLiked ? "Все" : "Избранное"}}</button>
                 </div>
             </div>
 
 
             <div class="whiteBlock justify-content-center mx-auto">
-            <div class="text-block mx-auto align-items-center">
-            <div class="info mx-auto">
-                <app-trackInfo></app-trackInfo>
-            </div>
+                <div class="text-block mx-auto align-items-center">
+                    <div class="info mx-auto">
+                        <app-trackInfo></app-trackInfo>
+                    </div>
 
-            <div class="lyrics mx-auto">
-                <app-lyrics></app-lyrics>
+                    <div class="lyrics mx-auto">
+                        <app-lyrics></app-lyrics>
+                    </div>
+                </div>
+            </div>
+            <div class="languages">
+                <app-languageStore></app-languageStore>
             </div>
         </div>
     </div>
-            <div class="languages">
-                <app-languageStore></app-languageStore>
-            </div> 
-    </div>
 </div>
-</div> 
