@@ -6,7 +6,6 @@ namespace musicServiceServer.Database.Entities
     /// <summary>
     /// Информация о песне/треке.
     /// </summary>
-
     public class Track
     {
         /// <summary>
@@ -44,6 +43,5 @@ namespace musicServiceServer.Database.Entities
         /// Обложка песни.
         /// </summary>
         public string Picture { get; set; }
-
     }
 }

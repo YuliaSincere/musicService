@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicServiceServer.Database;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -10,9 +11,10 @@ using NpgsqlTypes;
 namespace musicService.Migrations
 {
     [DbContext(typeof(MusicServiceDbContext))]
-    partial class MusicServiceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210509093451_AddSearchCache")]
+    partial class AddSearchCache
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

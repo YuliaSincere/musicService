@@ -12,7 +12,7 @@ export class UserService {
 
     constructor(private http: HttpClient, private router: Router) {
         this.readUserNameFromStorage();
-     }
+    }
 
     private userName: string = null;
     private readonly signInUrl = 'api/signin';
@@ -29,7 +29,7 @@ export class UserService {
 
     /**
      * Возвращает признак того, что идентификатор пользователя задан.
-    */
+     */
     get isUserNameKeyExists(): boolean {
         return ((this.userName !== null)
             && (typeof this.userName !== 'undefined'));
@@ -81,6 +81,5 @@ export class UserService {
         if (storedUserName) {
             this.userName = storedUserName;
         }
-    }   
-
+    }
 }
