@@ -3,24 +3,36 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
+const userNameLocalStorageKey = 'userName';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
 
-    constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient, private router: Router) {
+        this.readUserNameFromStorage();
+     }
 
     private userName: string = null;
     private readonly signInUrl = 'api/signin';
     private readonly signUpUrl = 'api/signup';
     private readonly onChanged = new Subject<void>();
 
+
     /**
      * Событие об изменении состоянии пользователя.
      */
     get raiseOnChanged$(): Observable<void> {
         return this.onChanged.asObservable();
+    }
+
+    /**
+     * Возвращает признак того, что идентификатор пользователя задан.
+    */
+    get isUserNameKeyExists(): boolean {
+        return ((this.userName !== null)
+            && (typeof this.userName !== 'undefined'));
     }
 
     signIn(userName: string): Promise<void> {
@@ -59,7 +71,16 @@ export class UserService {
 
     private setUser(userName: string): void {
         this.userName = userName;
+        sessionStorage.setItem(userNameLocalStorageKey, this.userName);
         this.onChanged.next();
     }
+
+    private readUserNameFromStorage(): void {
+        const storedUserName = sessionStorage.getItem(userNameLocalStorageKey);
+        console.log(storedUserName);
+        if (storedUserName) {
+            this.userName = storedUserName;
+        }
+    }   
 
 }

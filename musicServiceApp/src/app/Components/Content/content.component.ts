@@ -35,6 +35,8 @@ export class ContentComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
 
+        
+
         this.updateUser();
 
         this.subs.sink = this.coreService.raiseOnChanged$.subscribe((args: ChangedArgs) => {
