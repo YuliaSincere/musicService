@@ -1,4 +1,5 @@
-import { Component, Input, OnDestroy, OnInit} from '@angular/core'
+import { UserService } from './../../Services/user.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 
 @Component({
     selector: 'app-userPage',
@@ -6,5 +7,19 @@ import { Component, Input, OnDestroy, OnInit} from '@angular/core'
     styleUrls: ['./userPage.component.scss']
 })
 
-export class UserPageComponent {
+export class UserPageComponent implements OnInit {
+
+    currentUserName: string = null;
+
+    constructor(
+        private userService: UserService
+    ) { }
+
+    ngOnInit(): void {
+        this.getCurrentUserName();
+    }
+
+    private getCurrentUserName() {
+        this.currentUserName = this.userService.getUserName();
+    }
 }

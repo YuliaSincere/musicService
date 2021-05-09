@@ -1,5 +1,7 @@
+import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 
 @Injectable({
@@ -7,11 +9,19 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private router: Router) { }
 
     private userName: string = null;
     private readonly signInUrl = 'api/signin';
     private readonly signUpUrl = 'api/signup';
+    private readonly onChanged = new Subject<void>();
+
+    /**
+     * Событие об изменении состоянии пользователя.
+     */
+    get raiseOnChanged$(): Observable<void> {
+        return this.onChanged.asObservable();
+    }
 
     signIn(userName: string): Promise<void> {
         const params = new HttpParams()
@@ -20,7 +30,7 @@ export class UserService {
         return this.http.get(this.signInUrl, { params: params })
             .toPromise()
             .then(() => {
-                this.userName = userName;
+                this.setUser(userName);
             });
     }
 
@@ -31,8 +41,12 @@ export class UserService {
         return this.http.get<void>(this.signUpUrl, { params: params })
             .toPromise()
             .then(() => {
-                this.userName = userName;
+                this.setUser(userName);
             });
+    }
+
+    logOut(): void {
+        this.setUser(null);
     }
 
     getUserName(): string {
@@ -42,4 +56,10 @@ export class UserService {
     getUserSignedInStatus(): boolean {
         return (this.userName !== null);
     }
+
+    private setUser(userName: string): void {
+        this.userName = userName;
+        this.onChanged.next();
+    }
+
 }

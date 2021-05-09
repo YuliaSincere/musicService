@@ -10,16 +10,26 @@
                 </div>
             </div>
 
-            <div class="input-group">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Ex. Love, Cat"
-                       aria-label="Ex. Love, Cat"
-                       aria-describedby="button-addon2">
-                <button class="btn btn-outline-primary"
-                        type="button"
-                        id="button-addon2">Search</button>
+            <div class="d-flex">
+                <div class="input-group">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Ex. Love, Cat"
+                           aria-label="Ex. Love, Cat"
+                           aria-describedby="button-addon2">
+                    <button class="btn btn-outline-primary"
+                            type="button"
+                            id="button-addon2">Search
+                    </button>
+
+                </div>
+                <button type="button"
+                        (click)="showLikedClick()"
+                        class="btn btn-primary ms-2">
+                    {{showLiked ? "Все" : "Избранное"}}
+                </button>
             </div>
+
 
             <div class="trackStore">
                 <app-trackStore [showLiked]="showLiked"></app-trackStore>
@@ -31,11 +41,20 @@
             <div class="d-flex w-100">
                 <div class="ms-auto">
                     <button type="button"
-                            class="btn btn-outline-primary me-3">Profile</button>
+                            *ngIf="!userStatus"
+                            (click)="logInClick()"
+                            class="btn btn-outline-primary me-3">Войти</button>
+                    <span class="me-3">{{userName}}</span>
                     <button type="button"
-                            (click)="showLikedClick()"
-                            class="btn btn-primary">
-                         {{showLiked ? "Все" : "Избранное"}}</button>
+                            *ngIf="userStatus"
+                            (click)="profileClick()"
+                            class="btn btn-outline-primary me-3">Профиль</button>
+                    <button type="button"
+                            *ngIf="userStatus"
+                            (click)="logOutClick()"
+                            class="btn btn-danger">Выйти</button>
+
+
                 </div>
             </div>
 

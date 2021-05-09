@@ -16,11 +16,10 @@ import { Router } from '@angular/router';
 })
 
 export class TrackInfoComponent implements OnInit, OnDestroy {
-    @Input() // Входной параметр для компонента - тут песня (отображение)
-    public track: Track;
+    track: Track = null;
     likedStatus = false;
     likedStatusVisible = false;
-    display: false;
+    display = false;
     public imageName: string;
     private onChangedSubscription: Subscription;
 
@@ -42,6 +41,7 @@ export class TrackInfoComponent implements OnInit, OnDestroy {
 
     private async getTrackInfo(args: ChangedArgs) {
         this.track = await this.trackProvider.getTrack(args.trackId);
+        this.display = true;
         this.likedStatus = await this.trackProvider.getLikedStatus(args.trackId, this.userService.getUserName());
         this.likedStatusVisible = this.userService.getUserSignedInStatus();
     }
