@@ -14,11 +14,15 @@
                 <div class="input-group">
                     <input type="text"
                            class="form-control"
+                           input
+                           [ngModel]="searchStr"
+                           (ngModelChange)="modelChange($event)"
                            placeholder="Ex. Love, Cat"
                            aria-label="Ex. Love, Cat"
                            aria-describedby="button-addon2">
                     <button class="btn btn-outline-primary"
                             type="button"
+                            (click)="searchClick()"
                             id="button-addon2">Search
                     </button>
 
@@ -32,13 +36,13 @@
 
 
             <div class="trackStore">
-                <app-trackStore [showLiked]="showLiked"></app-trackStore>
+                <app-trackStore></app-trackStore>
             </div>
         </div>
 
         <div class="col-7 lyrics-column pt-3 backImage justify-content-center"
              [style.background]="imageName">
-            <div class="d-flex w-100">
+            <div class="d-flex w-100 user-panel p-2 mb-2">
                 <div class="ms-auto">
                     <button type="button"
                             *ngIf="!userStatus"

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using musicServiceServer.Database.Entities;
 using MusicServiceServer.Database;
 using System.Collections.Generic;
@@ -6,9 +7,6 @@ using System.Linq;
 
 namespace musicServiceApp.Controllers
 {
-
-
-
     [Route("api")]
     [ApiController]
     [Produces("application/json")]
@@ -22,14 +20,68 @@ namespace musicServiceApp.Controllers
 
         [HttpGet]
         [Route("tracks")]
-        public IEnumerable<SimpleTrackDto> GetTracks()
+        public IEnumerable<SimpleTrackDto> GetTracks(string filter, bool liked, string userName)
         {
-            var trackFromDb = _context.Tracks
+            var hasFilter = !string.IsNullOrWhiteSpace(filter);
+            var showLiked = !string.IsNullOrWhiteSpace(userName) && liked;
+
+            if (!hasFilter && !showLiked)
+            {
+                // Фильтр не нужен, возвращается все.
+                return _context.Tracks
                 .OrderBy(t => t.Title)
                 .Select(t => ConvertToSimpleDto(t))
                 .ToList();
+            }
 
-            return trackFromDb;
+            var trackIds = showLiked ? GetLikedTracksIds(userName, showLiked) : null;
+            var filterTracks = GetFilterTracks(hasFilter, filter, trackIds);
+
+            return filterTracks;
+        }
+
+        private IEnumerable<int> GetLikedTracksIds(string userName, bool showLiked)
+        {
+            var user = _context.Users
+               .SingleOrDefault(user => user.userName == userName);
+
+            if (user == null)
+            {
+                return Enumerable.Empty<int>();
+            }
+
+            var trackIds = _context.Favs
+                .Where(f => f.UserId == user.Id)
+                .Select(f => f.TrackId)
+                .ToArray();
+
+            return trackIds;
+        }
+
+        private IEnumerable<SimpleTrackDto> GetFilterTracks(bool hasFilter, string filter, IEnumerable<int> trackIdsToFilter)
+        {
+            // Id песен с совпадением по тексту.
+            var filterTrackIds = hasFilter
+                ? _context.SearchCaches
+                    .Where(sc => sc.Cache.Matches(filter))
+                    .Select(sc => sc.TrackId)
+                    .ToArray()
+                : null;
+
+            var likeFilter = hasFilter ? filter.ToLower() : string.Empty;
+            var searchResultFromDb = _context.Tracks
+                .Where(t =>
+                    (trackIdsToFilter == null || trackIdsToFilter.Contains(t.Id))
+                    && (!hasFilter
+                        || t.Title.ToLower().Contains(likeFilter)
+                        || t.Author.ToLower().Contains(likeFilter)
+                        || filterTrackIds == null
+                        || filterTrackIds.Contains(t.Id)))
+                .OrderBy(t => t.Title)
+                .Select(t => ConvertToSimpleDto(t))
+                .ToArray();
+
+            return searchResultFromDb;
         }
 
         [HttpGet]
@@ -104,35 +156,8 @@ namespace musicServiceApp.Controllers
             return likedStatus;
         }
 
-        [HttpGet]
-        [Route("likedtracks")]
-        public IEnumerable<SimpleTrackDto> GetLikedTracks(int trackId, string userName)
-        {
-            var user = _context.Users
-               .SingleOrDefault(user => user.userName == userName);
-            if (user == null)
-            {
-                return Enumerable.Empty<SimpleTrackDto>();
-            }
-            var trackIds = _context.Favs
-            .Where(f => f.UserId == user.Id)
-            .Select(f => f.TrackId)
-            .ToArray();
-
-            var likedTrackFromDb = _context.Tracks
-                .Where(t => trackIds.Contains(t.Id))
-                .OrderBy(t => t.Title)
-                .Select(t => ConvertToSimpleDto(t))
-                .ToList();
-
-            return likedTrackFromDb;
-        }
-
-
-
         [HttpPost]
         [Route("liked")]
-        // public IActionResult SetLikedStatus(int trackId, string userName, bool likedStatus)
         public IActionResult SetLikedStatus(SetLikedStatusDto setLikedStatusDto)
         {
 
@@ -174,7 +199,6 @@ namespace musicServiceApp.Controllers
             if (!setLikedStatusDto.LikedStatus)
             {
                 // Удаление песни из избранного.
-
                 try
                 {
                     _context.Favs.Remove(liked);
@@ -189,14 +213,12 @@ namespace musicServiceApp.Controllers
             return NoContent();
         }
 
-
         static private SimpleTrackDto ConvertToSimpleDto(Track t)
         {
             var result = new SimpleTrackDto(t.Id, t.Title, t.Author);
 
             return result;
         }
-
 
         static private TrackDto ConvertToDto(Track t)
         {
@@ -214,6 +236,5 @@ namespace musicServiceApp.Controllers
 
             return result;
         }
-
     }
 }

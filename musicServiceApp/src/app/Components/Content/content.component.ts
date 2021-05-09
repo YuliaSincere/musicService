@@ -17,10 +17,12 @@ export class ContentComponent implements OnInit, OnDestroy {
     display = false;
     showLiked = false;
     userStatus = false;
-    userName = "puk";
+    userName = '';
+    showSearchResult = false;
 
     @Input() // Входной параметр для компонента - тут картинка (отображение)
     public imageName: string;
+    public searchStr = '';
     private subs = new SubSink();
 
     constructor(
@@ -34,10 +36,8 @@ export class ContentComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-
-        
-
         this.updateUser();
+        this.updateTracks();
 
         this.subs.sink = this.coreService.raiseOnChanged$.subscribe((args: ChangedArgs) => {
             this.getCover(args);
@@ -47,8 +47,23 @@ export class ContentComponent implements OnInit, OnDestroy {
         });
     }
 
+    public modelChange(str: string): void {
+        this.searchStr = str;
+
+        setTimeout(
+            () => {
+                this.updateTracks();
+        },
+        500);
+    }
+
     showLikedClick() {
         this.showLiked = !this.showLiked;
+        this.updateTracks();
+    }
+
+    searchClick() {
+        this.updateTracks();
     }
 
     logInClick() {
@@ -70,6 +85,10 @@ export class ContentComponent implements OnInit, OnDestroy {
         }
     }
 
+    private updateTracks() {
+        this.trackProvider.updateTracks(this.searchStr, this.showLiked, this.userName);
+    }
+
     private async getCover(args: ChangedArgs) {
         const imageName = await this.trackProvider.getCover(args.trackId);
         this.imageName = `url("${imageName}")`;
@@ -79,6 +98,4 @@ export class ContentComponent implements OnInit, OnDestroy {
         this.userName = this.userService.getUserName();
         this.userStatus = this.userService.getUserSignedInStatus();
     }
-
-
 }

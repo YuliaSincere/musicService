@@ -1,7 +1,7 @@
-import { SimpleTrack } from './../../Models/track';
-import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TrackProvider } from 'src/app/Services/TrackProvider';
-import { UserService } from 'src/app/Services/user.service';
+import { SimpleTrack } from './../../Models/track';
 
 @Component({
     selector: 'app-trackStore',
@@ -9,25 +9,22 @@ import { UserService } from 'src/app/Services/user.service';
     styleUrls: ['./trackStore.component.scss']
 })
 
-export class TrackStoreComponent implements OnInit {
+export class TrackStoreComponent implements OnInit, OnDestroy {
 
-    constructor(private trackProvider: TrackProvider, private userService: UserService) { }
+    trackInStores: SimpleTrack[];
 
-    public trackInStores: SimpleTrack[];
+    private subscription: Subscription = null;
 
-    @Input()
-    set showLiked(value: boolean) {
-        this.getTracks(value);
-    }
-    
+    constructor(private trackProvider: TrackProvider) { }
+
     ngOnInit(): void {
-        this.getTracks(false);
+        this.subscription = this.trackProvider.onTracksChanged$
+            .subscribe(tracks => {
+                this.trackInStores = tracks;
+            });
     }
 
-    private async getTracks(showLiked: boolean) {
-
-        this.trackInStores = showLiked
-            ? await this.trackProvider.getLikedTracks(this.userService.getUserName())
-            : await this.trackProvider.getTracks();
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 }

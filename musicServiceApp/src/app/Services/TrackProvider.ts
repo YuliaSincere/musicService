@@ -1,25 +1,48 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SimpleTrack, Track } from '../Models/track';
+import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { SimpleTrack, Track } from './../Models/track';
 
 @Injectable({
     providedIn: 'root',
 })
 export class TrackProvider {
 
-    // Получение данных с сервера.
-
-    constructor(
-        private http: HttpClient) { }
-
     private tracksUrl = 'api/tracks'; // Получение всех песен.
-    private likedTracksUrl = 'api/likedtracks'; // Получение всех избранных песен.
     private trackUrl = 'api/track'; // Получение конкретной песни.
     private coverUrl = 'api/cover'; // Получение обложки песни.
     private likedStatusUrl = 'api/liked'; // Получение статуса добавления в избранное.
 
-    getTracks(): Promise<SimpleTrack[]> {
-        return this.http.get<SimpleTrack[]>(this.tracksUrl).toPromise();
+    private readonly onTracksChanged = new Subject<SimpleTrack[]>();
+
+    constructor(
+        private http: HttpClient) { }
+
+    /**
+     * Событие изменения списка песен.
+     */
+    get onTracksChanged$(): Observable<SimpleTrack[]> {
+        return this.onTracksChanged.asObservable();
+    }
+
+    /**
+     * Обновление списка песен с фильтрацией.
+     * @param filter Строка поиска.
+     * @param liked Флаг отображения избранных песен.
+     * @param userName Имя пользователя.
+     */
+    updateTracks(filter: string, liked: boolean, userName: string): void {
+        this.getTracks(filter, liked, userName)
+            .pipe(tap({
+                next: tracks => {
+                    this.onTracksChanged.next(tracks);
+                },
+                error: error => {
+                    this.onTracksChanged.next([]);
+                }
+            }))
+            .subscribe();
     }
 
     getTrack(trackId: number): Promise<Track> {
@@ -51,11 +74,21 @@ export class TrackProvider {
         return this.http.post<void>(this.likedStatusUrl, params).toPromise();
     }
 
-    getLikedTracks(userName: string): Promise<SimpleTrack[]> {
+    /**
+     * Получение списка песен с фильтрацией.
+     * @param filter Строка поиска.
+     * @param liked Флаг отображения избранных песен.
+     * @param userName Имя пользователя.
+     * @returns Список песен.
+     */
+    private getTracks(filter: string, liked: boolean, userName: string): Observable<SimpleTrack[]> {
         const params = new HttpParams()
+            .append('filter', filter)
+            .append('liked', liked.toString())
             .append('userName', userName);
-        return this.http.get<SimpleTrack[]>(this.likedTracksUrl, { params: params }).toPromise();
+
+        return this.http.get<SimpleTrack[]>(this.tracksUrl, { params });
     }
-
-
 }
+
+
