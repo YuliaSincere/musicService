@@ -29,8 +29,7 @@
                 </div>
                 <button type="button"
                         (click)="showLikedClick()"
-                        class="btn btn-primary ms-2">
-                    {{showLiked ? "Все" : "Избранное"}}
+                        class="btn btn-primary ms-2 bi" [ngClass]="{'bi-suit-heart': !showLiked, 'bi-suit-heart-fill': showLiked}">
                 </button>
             </div>
 
