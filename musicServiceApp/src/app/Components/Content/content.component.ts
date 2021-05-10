@@ -19,7 +19,6 @@ export class ContentComponent implements OnInit, OnDestroy {
     userStatus = false;
     userName = '';
     showSearchResult = false;
-    public stringVar: string;
 
     @Input() // Входной параметр для компонента - тут картинка (отображение)
     public imageName: string;
@@ -98,7 +97,5 @@ export class ContentComponent implements OnInit, OnDestroy {
     private updateUser() {
         this.userName = this.userService.getUserName();
         this.userStatus = this.userService.getUserSignedInStatus();
-        this.stringVar = "/favs?userName=" + this.userService.getUserName();
-        console.log(this.stringVar);
     }
 }

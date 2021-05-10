@@ -77,7 +77,6 @@ export class UserService {
 
     private readUserNameFromStorage(): void {
         const storedUserName = sessionStorage.getItem(userNameLocalStorageKey);
-        console.log(storedUserName);
         if (storedUserName) {
             this.userName = storedUserName;
         }
