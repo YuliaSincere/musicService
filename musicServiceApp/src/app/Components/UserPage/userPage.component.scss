@@ -1,44 +1,60 @@
-.mainContainer {
-    background-color: #e8c9aa;
-    display: grid;
-    grid-template-columns: 33% 34% 33%;
-    grid-template-rows: 10% 20% 20% 20% 30%;
-    height: 950px;
-}
-
-.image {
-    height: 380px;
-}
-
-.exitButton {
-    grid-column-start: 3;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: span 1;
-    background-color: #e8c9aa;
-}
-
-.userPic {
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: span 2;
-    background-color: #e8c9aa;
-    text-align: center;
-}
-
 .userName {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 4;
-    grid-row-end: span 1;
-    background-color: #e8c9aa;
+    text-align: center;
+    color: #056efd;
+    font-weight: bold;
 }
 
-.favsPageButton {
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 5;
-    grid-row-end: span 1;
-    background-color: #e8c9aa;
+.shareButton {
+    height: 50px;
+    width: 30%;
+    position: fixed;
+    top: 85%;
+    left: 45%;
 }
+
+
+
+// .mainContainer {
+//     background-color: #e8c9aa;
+//     display: grid;
+//     grid-template-columns: 33% 34% 33%;
+//     grid-template-rows: 10% 20% 20% 20% 30%;
+//     height: 950px;
+// }
+
+// .image {
+//     height: 380px;
+// }
+
+// .exitButton {
+//     grid-column-start: 3;
+//     grid-column-end: 3;
+//     grid-row-start: 1;
+//     grid-row-end: span 1;
+//     background-color: #e8c9aa;
+// }
+
+// .userPic {
+//     grid-column-start: 2;
+//     grid-column-end: 2;
+//     grid-row-start: 2;
+//     grid-row-end: span 2;
+//     background-color: #e8c9aa;
+//     text-align: center;
+// }
+
+// .userName {
+//     grid-column-start: 1;
+//     grid-column-end: 4;
+//     grid-row-start: 4;
+//     grid-row-end: span 1;
+//     background-color: #e8c9aa;
+// }
+
+// .favsPageButton {
+//     grid-column-start: 2;
+//     grid-column-end: 2;
+//     grid-row-start: 5;
+//     grid-row-end: span 1;
+//     background-color: #e8c9aa;
+// }

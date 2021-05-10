@@ -1,19 +1,53 @@
-<div class="mainContainer">
+<div class="main w-100 h-100 d-flex flex-column position-absolute">
+    <div class="d-flex flex-column mx-auto mt-5 align-middle">
+        <div class="d-flex userPic">
+            <img class="image" src="images/userpic.png">
+        </div>
 
-    <div class="exitButton">
-        jjjjj
+        <div class="d-flex userName fs-1 mx-auto">
+            {{this.currentUserName}}
+        </div>
+
+        <div class="d-flex likedStore">
+            <app-trackStore></app-trackStore>
+        </div>
+
+        <div class=" d-flex shareButton mx-auto">
+            <button type="button" (click)="onClickBack()" class="btn btn-primary mt-2 me-3">Назад</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                class="btn btn-outline-primary mt-2">Поделиться</button>
+        </div>
     </div>
-
-    <div class="userPic">
-        <img class="image" src="images/userpic.png">
-    </div>
-
-    <div class="userName">
-        {{this.currentUserName}}
-    </div>
-
-    <div class="favsPageButton">
-        jjjjjj
-    </div>
-
 </div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Скопируйте ссылку и отправьте друзьям!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group">
+                <input type="text"
+                       class="form-control"
+                       input
+                       [value]="urlVar"
+                       placeholder=""
+                       aria-label=""
+                       aria-describedby="button-addon2">
+                <button class="btn btn-outline-primary bi bi-stickies"
+                        type="button"
+                        (click)="onClickCopy()"
+                        id="button-addon2">
+                </button>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>

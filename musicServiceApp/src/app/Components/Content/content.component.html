@@ -41,13 +41,13 @@
 
         <div class="col-7 lyrics-column pt-3 backImage justify-content-center"
              [style.background]="imageName">
-            <div class="d-flex w-100 user-panel p-2 mb-2">
+            <div class="d-flex w-100 user-panel p-2 mb-2 ms-auto">
                 <div class="ms-auto">
                     <button type="button"
                             *ngIf="!userStatus"
                             (click)="logInClick()"
                             class="btn btn-outline-primary me-3">Войти</button>
-                    <span class="me-3">{{userName}}</span>
+                    <span class="me-3 fs-5">{{userName}}</span>
                     <button type="button"
                             *ngIf="userStatus"
                             (click)="profileClick()"
