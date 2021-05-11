@@ -1,16 +1,11 @@
 .image {
-    width: 100px;
+    width : 100px;
     height: 100px;
 }
 
 .track-column {
     background-color: white;
-    overflow-y:auto;
-}
-
-.lyrics-column {
-    padding-right: 1rem;    
-    overflow-y:auto;
+    overflow-y      : auto;
 }
 
 .title {
@@ -18,37 +13,28 @@
 }
 
 .lyrics-column {
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
+    background-repeat  : no-repeat !important;
+    background-size    : cover !important;
     background-position: center !important;
-    z-index: -1 !important;
 }
+
 .whiteBlock {
     background-color: white;
-    border-radius: 15px;
-    width : max-content;
-    padding: 1rem;
-    margin-top: 2rem;
+    border-radius   : 15px;
 }
 
 .lyrics {
-    text-align: center;
- }
-
-.user-panel {
-     width: 105% !important;
-     margin-left: -3rem !important;
-     margin-right: -1rem !important;
-     z-index: 2 !important;
-     height: 70px;
-     background-color: white;
-     padding: 1rem;
-     margin-top: -1rem;
- }
-
-.backImage {
+    height: 30vh;
+    
 }
 
-.formForm {
-    width: 50%;
+$height: "150px";
+
+.tracks-container {
+    height    : calc(100vh - #{$height});
+    overflow-y: auto;
+}
+
+.left-header-panel {
+    height: $height;
 }

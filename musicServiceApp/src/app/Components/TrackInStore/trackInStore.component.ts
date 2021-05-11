@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CoreService } from 'src/app/Services/CoreService';
+import { CoreService } from 'src/app/Services/core.service';
 import { SimpleTrack } from './../../Models/track';
 
 @Component({
@@ -15,6 +15,6 @@ export class TrackInStoreComponent {
     constructor( private coreService: CoreService ){}
 
     async onClick(){
-        this.coreService.setTrackId(this.trackInStore.id);
+        this.coreService.setTrack(this.trackInStore);
     }
 } 

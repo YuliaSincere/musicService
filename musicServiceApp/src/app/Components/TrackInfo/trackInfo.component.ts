@@ -1,13 +1,11 @@
-import { LikedButtonComponent } from './../LikedButton/likedButton.component';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-
-import { ChangedArgs } from 'src/app/Services/ChangedArgs';
-import { CoreService } from 'src/app/Services/CoreService';
-import { TrackProvider } from 'src/app/Services/TrackProvider';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Track } from 'src/app/Models/track';
+import { ChangedArgs } from 'src/app/Services/ChangedArgs';
+import { CoreService } from 'src/app/Services/core.service';
+import { TrackProvider } from 'src/app/Services/TrackProvider';
 import { UserService } from 'src/app/Services/user.service';
-import { Router } from '@angular/router';
+
 
 @Component({
     selector: 'app-trackInfo',

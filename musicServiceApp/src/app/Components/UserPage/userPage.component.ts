@@ -1,10 +1,9 @@
-import { UserService } from './../../Services/user.service';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core'
-import { SubSink } from 'subsink';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CoreService } from 'src/app/Services/CoreService';
-import { TrackProvider } from 'src/app/Services/TrackProvider';
 import * as copy from 'copy-to-clipboard';
+import { TrackProvider } from 'src/app/Services/TrackProvider';
+import { SubSink } from 'subsink';
+import { UserService } from './../../Services/user.service';
 
 @Component({
     selector: 'app-userPage',

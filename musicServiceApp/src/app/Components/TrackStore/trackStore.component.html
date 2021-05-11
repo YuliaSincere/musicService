@@ -1,6 +1,6 @@
 <div class="trackContainer">
-    <ul class="container">
-        <li *ngFor="let trackInStore of trackInStores">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item border-0 list-group-item-action" [ngClass]="{'active': trackInStore.active}" *ngFor="let trackInStore of trackInStores">
             <app-trackInStore [trackInStore]="trackInStore"></app-trackInStore>
         </li>
     </ul>

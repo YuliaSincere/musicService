@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-
-import { CoreService } from 'src/app/Services/CoreService';
-import { Language } from '../../Models/language';
-import { LanguageProvider } from 'src/app/Services/LanguageProvider';
 import { Subscription } from 'rxjs';
+import { CoreService } from 'src/app/Services/core.service';
+import { LanguageProvider } from 'src/app/Services/LanguageProvider';
+import { Language } from '../../Models/language';
+
 
 @Component({
     selector: 'app-languageStore',
@@ -12,23 +12,27 @@ import { Subscription } from 'rxjs';
 })
 
 export class LanguageStoreComponent implements OnInit, OnDestroy {
- 
-    display: boolean = false;
 
-constructor(private languageProvider: LanguageProvider, private coreService: CoreService){}
+    display = false;
+    languages: Language[];
+
+    private onTrackSelectedSubscription: Subscription;
+
+    constructor(private languageProvider: LanguageProvider, private coreService: CoreService) { }
+
     ngOnDestroy(): void {
         this.onTrackSelectedSubscription.unsubscribe();
     }
 
-    public languages: Language[];
-    private onTrackSelectedSubscription: Subscription;
-    
-
     ngOnInit(): void {
         this.getLanguages();
-        this.onTrackSelectedSubscription = this.coreService.raiseOnChanged$.subscribe(any => {
+        this.onTrackSelectedSubscription = this.coreService.raiseOnChanged$.subscribe(() => {
             this.display = true;
         });
+    }
+
+    onClick(language: Language) {
+        this.coreService.setLanguageId(language.id);
     }
 
     private async getLanguages() {

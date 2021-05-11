@@ -1,9 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { ChangedArgs } from 'src/app/Services/ChangedArgs';
-import { CoreService } from 'src/app/Services/CoreService';
 import { LyricsProvider } from 'src/app/Services/LyricsProvider';
 import { Subscription } from 'rxjs';
+import { CoreService } from 'src/app/Services/core.service';
 
 @Component({
     selector: 'app-lyrics',
@@ -29,7 +29,7 @@ export class LyricsComponent implements OnInit, OnDestroy{
 
     private async updateLyrics(args : ChangedArgs) {
         this.lyricsText = await this.lyricsProvider.getLyrics(args.trackId, args.languageId);
-        this.resultString = this.lyricsText.replace(/\\n/g,"<br>");
+        this.resultString = this.lyricsText.replace(/\\n/g, "<br>");
     }
 
 }

@@ -1,10 +1,11 @@
-export interface SimpleTrack {
+export class SimpleTrack {
     id: number;
     title: string;
     author: string;
+    active: boolean;
 }
 
-export interface Track extends SimpleTrack {
+export class Track extends SimpleTrack {
 
     year: string;
     genre: string;

@@ -1,11 +1,10 @@
-import { UserService } from './../../Services/user.service';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { ChangedArgs } from 'src/app/Services/ChangedArgs';
-import { CoreService } from 'src/app/Services/CoreService';
+import { CoreService } from 'src/app/Services/core.service';
 import { TrackProvider } from 'src/app/Services/TrackProvider';
 import { SubSink } from 'subsink';
+import { UserService } from './../../Services/user.service';
 
 @Component({
     selector: 'app-content',

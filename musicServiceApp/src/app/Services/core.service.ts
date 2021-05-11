@@ -1,9 +1,9 @@
+import { SimpleTrack } from '../Models/track';
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ChangedArgs } from './ChangedArgs';
 import { LanguageProvider } from './LanguageProvider';
 import { LyricsProvider } from './LyricsProvider';
-;
 
 
 @Injectable({
@@ -13,17 +13,21 @@ export class CoreService {
 
     private readonly onChanged: Subject<ChangedArgs>;
 
-    private trackId: number;
+    private track: SimpleTrack = null;
     private languageId: number;
-    private lyricsId: number;
 
     constructor(private languageProvider: LanguageProvider, private lyricsProvider: LyricsProvider) {
         this.onChanged = new Subject<any>();
         this.SetDefaultLanguage();
     }
 
-    public setTrackId(trackId: number) {
-        this.trackId = trackId;
+    public setTrack(track: SimpleTrack) {
+        if (typeof this.track !== 'undefined' && this.track) {
+            this.track.active = false;
+        }
+
+        this.track = track;
+        this.track.active = true;
         this.raiseOnChanged();
     }
 
@@ -32,9 +36,8 @@ export class CoreService {
         this.raiseOnChanged();
     }
 
-
     private raiseOnChanged(){
-        const args = { trackId : this.trackId, languageId : this.languageId };
+        const args = { trackId : this.track.id, languageId : this.languageId };
         this.onChanged.next(args);
     }
 

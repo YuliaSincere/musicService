@@ -1,7 +1,6 @@
-<div class="languageContainer" *ngIf="display">
-    <div class="container" cols="3" rowHeight="100px">
-        <div *ngFor="let language of languages">
-            <app-language [language]="language"></app-language>
-        </div>
+<div class="d-flex w-100 justify-content-center"
+     *ngIf="display">
+    <div *ngFor="let language of languages">
+        <button class=" d-flex name btn btn-outline-primary ms-1 me-1" (click)="onClick(language)">{{language.name}}</button>
     </div>
 </div>
