@@ -1,67 +1,51 @@
 <div class="w-100 h-100 d-flex flex-column position-absolute">
-    <div class="row h-100 m-0 p-0">
-        <div class="col-5 track-column pt-3">
+    <div class="row">
 
-            <div class="d-flex mb-3">
-                <img class="image"
-                     src="images/logoCon.png">
-                <div class="d-flex align-items-center">
+
+        <div class="col-4">
+            <div class="row d-flex">
+                <img class=" col-6  image" src="images/logoCon.png">
+                <div class="col-6 d-flex align-items-center">
                     <span class="title fs-1">MusicService</span>
                 </div>
             </div>
 
             <div class="d-flex">
-                <div class="input-group">
-                    <input type="text"
-                           class="form-control"
-                           input
-                           [ngModel]="searchStr"
-                           (ngModelChange)="modelChange($event)"
-                           placeholder="Ex. Love, Cat"
-                           aria-label="Ex. Love, Cat"
-                           aria-describedby="button-addon2">
-                    <button class="btn btn-outline-primary"
-                            type="button"
-                            (click)="searchClick()"
-                            id="button-addon2">Search
+                <div class=" d-flex input-group formForm">
+                    <input type="text" class="form-control" input [ngModel]="searchStr"
+                        (ngModelChange)="modelChange($event)" placeholder="Ex. Love, Cat" aria-label="Ex. Love, Cat"
+                        aria-describedby="button-addon2">
+                    <button class="btn btn-outline-primary" type="button" (click)="searchClick()"
+                        id="button-addon2">Search
                     </button>
 
                 </div>
-                <button type="button"
-                        (click)="showLikedClick()"
-                        class="btn btn-primary ms-2 bi" [ngClass]="{'bi-suit-heart': !showLiked, 'bi-suit-heart-fill': showLiked}">
+                <button type="button" (click)="showLikedClick()" class="btn btn-primary ms-2 bi"
+                    [ngClass]="{'bi-suit-heart': !showLiked, 'bi-suit-heart-fill': showLiked}">
                 </button>
             </div>
 
+            <div class="d-flex row mb-3">
 
-            <div class="trackStore">
-                <app-trackStore></app-trackStore>
+                <div class="trackStore">
+                    <app-trackStore></app-trackStore>
+                </div>
             </div>
         </div>
 
-        <div class="col-7 lyrics-column pt-3 backImage justify-content-center"
-             [style.background]="imageName">
-            <div class="d-flex w-100 user-panel p-2 mb-2 ms-auto">
+        <div class="col-8 lyrics-column pt-3 backImage justify-content-center"
+        [style.background]="imageName">
+            <div class="d-flex ms-auto w-100 user-panel mb-3">
                 <div class="ms-auto">
-                    <button type="button"
-                            *ngIf="!userStatus"
-                            (click)="logInClick()"
-                            class="btn btn-outline-primary me-3">Войти</button>
+                    <button type="button" *ngIf="!userStatus" (click)="logInClick()"
+                        class="btn btn-outline-primary me-3">Войти</button>
                     <span class="me-3 fs-5">{{userName}}</span>
-                    <button type="button"
-                            *ngIf="userStatus"
-                            (click)="profileClick()"
-                            class="btn btn-outline-primary me-3">Профиль</button>
-                    <button type="button"
-                            *ngIf="userStatus"
-                            (click)="logOutClick()"
-                            class="btn btn-danger">Выйти</button>
-
-
+                    <button type="button" *ngIf="userStatus" (click)="profileClick()"
+                        class="btn btn-outline-primary me-3">Профиль</button>
+                    <button type="button" *ngIf="userStatus" (click)="logOutClick()"
+                        class="btn btn-danger me-3">Выйти</button>
                 </div>
             </div>
-
-
             <div class="whiteBlock justify-content-center mx-auto">
                 <div class="text-block mx-auto align-items-center">
                     <div class="info mx-auto">
