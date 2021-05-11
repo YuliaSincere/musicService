@@ -1,7 +1,7 @@
 <div class="main w-100 h-100 d-flex flex-column position-absolute">
-    <div class="d-flex flex-column mx-auto mt-5 align-middle">
+    <div class="d-flex flex-column  inputPlace mx-auto mt-5 align-middle">
         <span class="title fs-2 mx-auto">
-            {{registration ? "Registration":"Authorization"}}
+            {{registration ? "Регистрация":"Авторизация"}}
         </span>
 
 
@@ -9,14 +9,14 @@
             <input type="text"
                    [(ngModel)]="userName"
                    class="form-control inputPlace"
-                   placeholder="Enter your User Name"
+                   placeholder="Введите имя пользователя"
                    aria-label="Ex. Love, Cat"
                    aria-describedby="button-addon2">
             <button class="btn btn btn-primary"
                     (click)="onClickSignIn()"
                     type="button"
                     id="button-addon2">
-                {{registration ? "Ok":"Sign In"}}</button>
+                {{registration ? "Ок":"Войти"}}</button>
         </div>
 
         <div *ngIf="hasError" class="text-danger">{{error}}</div>
@@ -24,7 +24,7 @@
         <button type="button"
                 (click)="onClickSignUp()"
                 *ngIf="!registration"
-                class="btn btn-outline-primary mx-auto mt-2">Sign Up</button>
+                class="btn btn-outline-primary mx-auto mt-2">Зарегистрироваться</button>
 
     </div>
 </div>

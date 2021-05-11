@@ -2,14 +2,21 @@
     text-align: center;
     color: #056efd;
     font-weight: bold;
+    margin-top: 2rem;
 }
 
 .shareButton {
     height: 50px;
     width: 30%;
     position: fixed;
-    top: 85%;
-    left: 45%;
+    top: 2%;
+    left: 2%;
+}
+
+.tracks-container {
+    height: 50vh;
+    margin-top: 3rem;
+    overflow-y: auto;
 }
 
 
