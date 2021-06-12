@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthorizationComponent } from './Components/Authorization/authorization.component';
 import { ContentComponent } from './Components/Content/content.component';
-import { FavsPageComponent } from './Components/FavsPage/favsPage.component';
 import { LanguageStoreComponent } from './Components/LanguageStore/languageStore.component';
 import { LikedButtonComponent } from './Components/LikedButton/likedButton.component';
 import { LyricsComponent } from './Components/Lyrics/lyrics.component';
@@ -27,7 +26,6 @@ import { UserPageComponent } from './Components/UserPage/userPage.component';
     LanguageStoreComponent,
     AuthorizationComponent,
     UserPageComponent,
-    FavsPageComponent,
     LikedButtonComponent,
     ProfileButtonComponent,
     TrackInStoreComponent,
